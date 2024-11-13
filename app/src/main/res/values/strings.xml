@@ -4,4 +4,7 @@
     <string name="title_scan">Scan</string>
     <string name="title_profile">Profile</string>
     <string name="login">Login</string>
+    <string name="signup_text">Don"'"t have an account? <u><font color="#166683">Sign-up here</font></u></string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
 </resources>

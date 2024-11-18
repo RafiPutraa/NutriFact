@@ -6,17 +6,145 @@
     android:layout_height="match_parent"
     tools:context=".ui.profile.ProfileFragment">
 
-    <TextView
-        android:id="@+id/text_notifications"
-        android:layout_width="match_parent"
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/profileCard"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        android:layout_margin="16dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="4dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/card_gradient_background">
+
+
+            <TextView
+                android:id="@+id/tvUsername"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="60dp"
+                android:text="@string/prof_name"
+                android:textColor="@color/md_theme_onPrimary"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_margin="16dp"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <TextView
+                android:id="@+id/tv_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/ex_email"
+                android:textSize="14sp"
+                android:textColor="@color/md_theme_onPrimary"
+                app:layout_constraintTop_toBottomOf="@id/tvUsername"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_margin="8dp" />
+
+
+            <Button
+                android:id="@+id/btnEdtProfile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:backgroundTint="@color/md_theme_primary"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="8dp"
+                android:text="@string/btn_edtProfile"
+                android:textColor="@color/md_theme_onPrimary"
+                app:cornerRadius="24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_margin="16dp"
+                app:layout_constraintTop_toBottomOf="@id/tv_email" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+
+    <LinearLayout
+        android:id="@+id/navButtonsLayout"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
+        android:orientation="vertical"
+        android:padding="16dp"
+        app:layout_constraintTop_toBottomOf="@id/profileCard"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+
+        <Button
+            android:id="@+id/btnHistory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="@string/btn_history"
+            android:drawableEnd="@drawable/ic_arrow"
+            android:drawablePadding="8dp"
+            android:backgroundTint="@color/md_theme_primaryContainer"
+            android:textColor="@color/md_theme_onPrimaryContainer"
+            android:paddingVertical="16dp"
+            android:gravity="center|start"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"/>
+
+
+        <Button
+            android:id="@+id/btnFaq"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="@string/btn_faq"
+            android:drawableEnd="@drawable/ic_arrow"
+            android:drawablePadding="8dp"
+            android:backgroundTint="@color/md_theme_primaryContainer"
+            android:textColor="@color/md_theme_onPrimaryContainer"
+            android:paddingVertical="16dp"
+            android:gravity="center|start"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"/>
+
+
+        <Button
+            android:id="@+id/btnAbout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_aboutDev"
+            android:drawableEnd="@drawable/ic_arrow"
+            android:drawablePadding="8dp"
+            android:backgroundTint="@color/md_theme_primaryContainer"
+            android:textColor="@color/md_theme_onPrimaryContainer"
+            android:paddingVertical="16dp"
+            android:gravity="center|start"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"/>
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/btnLogOut"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="32dp"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/md_theme_error"
+        android:paddingVertical="16dp"
+        android:text="@string/btn_logOut"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        app:cornerRadius="24dp"
+        app:layout_constraintBottom_margin="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/navButtonsLayout" />
 </androidx.constraintlayout.widget.ConstraintLayout>

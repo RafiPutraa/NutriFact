@@ -19,4 +19,7 @@
     <string name="btn_logOut">Log Out</string>
     <string name="result">Result</string>
     <string name="home">Home</string>
+    <string name="not_found">Item Not Found</string>
+    <string name="descrip_notfound">If you want to contribute, select Add New</string>
+    <string name="add_new">add_new</string>
 </resources>

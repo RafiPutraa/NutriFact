@@ -1,6 +1,7 @@
 package com.dicoding.nutrifact.ui.scan
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
@@ -21,6 +22,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.dicoding.nutrifact.databinding.FragmentScanBinding
+import com.dicoding.nutrifact.ui.result.ResultActivity
 import com.google.mlkit.vision.barcode.BarcodeScanning
 import com.google.mlkit.vision.common.InputImage
 
@@ -71,6 +73,9 @@ class ScanFragment : Fragment() {
                             for (barcode in barcodes) {
                                 Log.d(TAG, "Detected barcode from image: ${barcode.rawValue}")
                                 binding.barcodeResult.text = barcode.rawValue ?: "No barcode found"
+                                val intent = Intent(requireContext(), ResultActivity::class.java)
+                                intent.putExtra("BARCODE_VALUE", barcode.rawValue)
+                                startActivity(intent)
                             }
                         }
                         .addOnFailureListener { e ->
@@ -131,6 +136,9 @@ class ScanFragment : Fragment() {
                                     Log.d(TAG, "Detected barcode: ${barcode.rawValue}")
                                     barcode.rawValue?.let {
                                         binding.barcodeResult.text = it
+                                        val intent = Intent(requireContext(), ResultActivity::class.java)
+                                        intent.putExtra("BARCODE_VALUE", barcode.rawValue)
+                                        startActivity(intent)
                                     }
                                 }
                             }

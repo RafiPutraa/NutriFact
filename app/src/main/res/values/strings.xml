@@ -17,4 +17,6 @@
     <string name="btn_faq">FAQ</string>
     <string name="btn_aboutDev">About Developer</string>
     <string name="btn_logOut">Log Out</string>
+    <string name="result">Result</string>
+    <string name="home">Home</string>
 </resources>

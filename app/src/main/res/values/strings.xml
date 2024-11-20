@@ -22,4 +22,10 @@
     <string name="not_found">Item Not Found</string>
     <string name="descrip_notfound">If you want to contribute, select Add New</string>
     <string name="add_new">add_new</string>
+    <string name="textanalyze">Analyze</string>
+    <string name="textTake_a_photo">Take a Photo</string>
+    <string name="text_barcode">Barcode : 00239103901238</string>
+    <string name="variant">Variant</string>
+    <string name="product">Product Name</string>
+    <string name="image_nutrition_des">image nutrition</string>
 </resources>

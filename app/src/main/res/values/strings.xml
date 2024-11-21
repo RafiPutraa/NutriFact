@@ -37,4 +37,10 @@
     <string name="no_history">No history please scan some product\n</string>
     <string name="edit_profile_head">Edit Profile</string>
     <string name="save">Save</string>
+    <string name="error_empty_username">Username cannot be empty</string>
+    <string name="error_empty_email">Email cannot be empty</string>
+    <string name="error_empty_password">Password cannot be empty</string>
+    <string name="error_empty_verify_password">Verify Password cannot be empty</string>
+    <string name="error_password_min_length">Password must be at least 8 characters</string>
+    <string name="error_password_not_match">Password does not match</string>
 </resources>

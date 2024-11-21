@@ -25,6 +25,8 @@ import com.dicoding.nutrifact.databinding.FragmentScanBinding
 import com.dicoding.nutrifact.ui.result.ResultActivity
 import com.google.mlkit.vision.barcode.BarcodeScanning
 import com.google.mlkit.vision.common.InputImage
+import com.google.mlkit.vision.barcode.BarcodeScannerOptions
+import com.google.mlkit.vision.barcode.common.Barcode
 
 class ScanFragment : Fragment() {
 
@@ -66,8 +68,15 @@ class ScanFragment : Fragment() {
 
                 try {
                     val inputImage = InputImage.fromFilePath(requireContext(), uri)
+                    val options = BarcodeScannerOptions.Builder()
+                        .setBarcodeFormats(
+                            Barcode.FORMAT_CODE_128,
+                            Barcode.FORMAT_EAN_13,
+                            Barcode.FORMAT_EAN_8
+                        )
+                        .build()
 
-                    val barcodeScanner = BarcodeScanning.getClient()
+                    val barcodeScanner = BarcodeScanning.getClient(options)
                     barcodeScanner.process(inputImage)
                         .addOnSuccessListener { barcodes ->
                             for (barcode in barcodes) {

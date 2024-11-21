@@ -17,13 +17,16 @@
         android:theme="@style/Theme.NutriFact"
         tools:targetApi="31">
         <activity
+            android:name=".ui.editprofile.EditProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.history.HistoryActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.addnew.newnutrition"
             android:exported="false" />
         <activity
             android:name=".ui.scan.tablenutrition.ScanNutrition"
-            android:exported="false" />
-        <activity
-            android:name=".ui.scan.tablenutrition.TableNutrition"
             android:exported="false" />
         <activity
             android:name=".ui.result.ResultActivity"

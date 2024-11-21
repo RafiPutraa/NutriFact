@@ -34,4 +34,6 @@
     <string name="text_barcode">Barcode : 00239103901238</string>
     <string name="product">Product Name</string>
     <string name="image_nutrition_des">image nutrition</string>
+    <string name="product_name">Product</string>
+    <string name="no_history">No history please scan some product\n</string>
 </resources>

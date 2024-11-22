@@ -1,19 +1,23 @@
 package com.dicoding.nutrifact.ui.scan
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.OptIn
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ExperimentalGetImage
+import androidx.camera.core.FocusMeteringAction
 import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
@@ -27,6 +31,7 @@ import com.google.mlkit.vision.barcode.BarcodeScanning
 import com.google.mlkit.vision.common.InputImage
 import com.google.mlkit.vision.barcode.BarcodeScannerOptions
 import com.google.mlkit.vision.barcode.common.Barcode
+import java.util.concurrent.TimeUnit
 
 class ScanFragment : Fragment() {
 
@@ -89,6 +94,7 @@ class ScanFragment : Fragment() {
                         }
                         .addOnFailureListener { e ->
                             Log.e(TAG, "Error detecting barcode: ${e.localizedMessage}", e)
+                            Toast.makeText(requireContext(), "Failed to detect barcode from image", Toast.LENGTH_SHORT).show()
                         }
                 } catch (e: Exception) {
                     Log.e(TAG,"Failed to load image for barcode scanning: ${e.localizedMessage}", e)
@@ -119,6 +125,7 @@ class ScanFragment : Fragment() {
     }
 
 
+    @SuppressLint("ClickableViewAccessibility")
     @OptIn(ExperimentalGetImage::class)
     private fun startCamera() {
         val cameraProviderFuture = ProcessCameraProvider.getInstance(requireContext())
@@ -174,12 +181,29 @@ class ScanFragment : Fragment() {
 
             try {
                 cameraProvider.unbindAll()
-                cameraProvider.bindToLifecycle(
+                val camera = cameraProvider.bindToLifecycle(
                     viewLifecycleOwner,
                     CameraSelector.DEFAULT_BACK_CAMERA,
                     preview,
                     imageAnalyzer
                 )
+                binding.cameraPreview.setOnTouchListener { _, event ->
+                    if (event.action == MotionEvent.ACTION_UP) {
+                        val factory = binding.cameraPreview.meteringPointFactory
+                        val point = factory.createPoint(event.x, event.y)
+
+                        val action = FocusMeteringAction.Builder(
+                            point,
+                            FocusMeteringAction.FLAG_AF or FocusMeteringAction.FLAG_AE
+                        )
+                            .setAutoCancelDuration(3, TimeUnit.SECONDS)
+                            .build()
+
+                        camera.cameraControl.startFocusAndMetering(action)
+                        Log.d(TAG, "Focus started at: x=${event.x}, y=${event.y}")
+                    }
+                    true
+                }
             } catch (exc: Exception) {
                 Log.e(TAG, "Camera binding error: ${exc.localizedMessage}", exc)
             }

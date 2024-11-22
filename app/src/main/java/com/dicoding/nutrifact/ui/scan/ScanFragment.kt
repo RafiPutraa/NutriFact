@@ -130,7 +130,15 @@ class ScanFragment : Fragment() {
                 it.setSurfaceProvider(binding.cameraPreview.surfaceProvider)
             }
 
-            val barcodeScanner = BarcodeScanning.getClient()
+            val options = BarcodeScannerOptions.Builder()
+                .setBarcodeFormats(
+                    Barcode.FORMAT_CODE_128,
+                    Barcode.FORMAT_EAN_13,
+                    Barcode.FORMAT_EAN_8
+                )
+                .build()
+
+            val barcodeScanner = BarcodeScanning.getClient(options)
 
             val imageAnalyzer = ImageAnalysis.Builder().build().also { imageAnalysis ->
                 imageAnalysis.setAnalyzer(ContextCompat.getMainExecutor(requireContext())) { imageProxy ->

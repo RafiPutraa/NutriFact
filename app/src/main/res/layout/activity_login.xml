@@ -20,7 +20,7 @@
         tools:src="@tools:sample/backgrounds/scenic" />
 
     <TextView
-        android:id="@+id/tvRegister"
+        android:id="@+id/tvLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="56dp"
@@ -32,7 +32,7 @@
         app:layout_constraintTop_toBottomOf="@id/imgLogo" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/ilEmail"
+        android:id="@+id/ilLoginEmail"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
@@ -50,17 +50,17 @@
         app:endIconMode="clear_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvRegister">
+        app:layout_constraintTop_toBottomOf="@+id/tvLogin">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etEmail"
+        <com.dicoding.nutrifact.custom.CustomEditText
+            android:id="@+id/edLoginEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/ilPassword"
+        android:id="@+id/ilLoginPassword"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
@@ -76,10 +76,10 @@
         app:endIconMode="password_toggle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ilEmail">
+        app:layout_constraintTop_toBottomOf="@+id/ilLoginEmail">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etPassword"
+        <com.dicoding.nutrifact.custom.CustomEditText
+            android:id="@+id/edLoginPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword" />
@@ -89,21 +89,21 @@
         android:id="@+id/btnLogin"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_margin="48dp"
+        android:layout_marginBottom="48dp"
         android:text="@string/login"
         android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/tvSignup"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ilPassword" />
+        app:layout_constraintStart_toStartOf="parent"/>
 
     <TextView
         android:id="@+id/tvSignup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
+        android:layout_marginBottom="80dp"
         android:text="@string/signup_text"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnLogin" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

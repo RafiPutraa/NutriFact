@@ -2,16 +2,22 @@ package com.dicoding.nutrifact.ui.login
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
+import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import com.dicoding.nutrifact.MainActivity
+import com.dicoding.nutrifact.data.ResultState
 import com.dicoding.nutrifact.databinding.ActivityLoginBinding
-import android.text.Editable
-import android.text.TextWatcher
-import com.dicoding.nutrifact.R
+import com.dicoding.nutrifact.ui.ViewModelFactory
 import com.dicoding.nutrifact.ui.register.RegisterActivity
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
+    private val loginViewModel: LoginViewModel by viewModels {
+        ViewModelFactory.getInstance()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,57 +31,54 @@ class LoginActivity : AppCompatActivity() {
         binding.tvSignup.setOnClickListener {
             startActivity(Intent(this, RegisterActivity::class.java))
         }
-
-        binding.etEmail.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                binding.ilEmail.error = null
-            }
-
-            override fun afterTextChanged(s: Editable?) {}
-        })
-
-        binding.etPassword.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                binding.ilPassword.error = null
-            }
-
-            override fun afterTextChanged(s: Editable?) {}
-        })
     }
 
     private fun validateInputs() {
-        val emailInput = binding.etEmail.text.toString().trim()
-        val passwordInput = binding.etPassword.text.toString().trim()
+        val isValidEmail = binding.edLoginEmail.validate()
+        val isValidPassword = binding.edLoginPassword.validate()
+        val email = binding.edLoginEmail.text.toString()
+        val password = binding.edLoginPassword.text.toString()
+        Log.d("LoginActivity", "isValidEmail: $isValidEmail, isValidPassword: $isValidPassword")
 
-        var isValid = true
-
-        if (emailInput.isEmpty()) {
-            binding.ilEmail.error = getString(R.string.error_empty_email)
-            isValid = false
+        if (isValidEmail && isValidPassword) {
+            login(email, password)
         } else {
-            binding.ilEmail.error = null
+            Toast.makeText(this, "Please enter valid email and password", Toast.LENGTH_SHORT).show()
         }
+    }
 
-        if (passwordInput.isEmpty()) {
-            binding.ilPassword.error = getString(R.string.error_empty_password)
-            isValid = false
-        } else {
-            binding.ilPassword.error = null
-        }
+    private fun login(email: String, password: String) {
+        loginViewModel.login(email, password).observe(this, Observer { result ->
+            Log.d("LoginActivity", "Result: $result")
+            when (result) {
+                is ResultState.Loading -> {
+                    showLoading(true)
+                }
+                is ResultState.Success -> {
+                    showLoading(false)
+                    startActivity(Intent(this, MainActivity::class.java))
+                    finish()
+                }
+                is ResultState.Error -> {
+                    showLoading(false)
+                    showToast(result.error)
+                }
+            }
+        })
+    }
 
-        if (isValid) {
-            startActivity(Intent(this, MainActivity::class.java))
-            finish()
-        }
+    private fun showLoading(isLoading: Boolean) {
+    }
+
+    private fun showToast(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 
     override fun onPause() {
         super.onPause()
-        binding.etEmail.text?.clear()
-        binding.etPassword.text?.clear()
-        binding.etEmail.clearFocus()
-        binding.etPassword.clearFocus()
+        binding.edLoginEmail.text?.clear()
+        binding.edLoginPassword.text?.clear()
+        binding.edLoginEmail.clearFocus()
+        binding.edLoginPassword.clearFocus()
     }
 }

@@ -4,8 +4,9 @@ import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.dicoding.nutrifact.data.ApiRepository
 
-class ScanViewModel : ViewModel() {
+class ScanViewModel (private val apiRepository: ApiRepository) : ViewModel() {
     private val _currentImageUri = MutableLiveData<Uri?>()
     val currentImageUri: LiveData<Uri?> get() = _currentImageUri
 

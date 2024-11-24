@@ -9,6 +9,8 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.dicoding.nutrifact.databinding.FragmentProfileBinding
+import com.dicoding.nutrifact.ui.addnew.NewNutrition
+import com.dicoding.nutrifact.ui.editprofile.EditProfileActivity
 import com.dicoding.nutrifact.ui.login.LoginActivity
 
 class ProfileFragment : Fragment() {
@@ -27,6 +29,15 @@ class ProfileFragment : Fragment() {
         binding.btnLogOut.setOnClickListener {
             startActivity(Intent(requireContext(),LoginActivity::class.java))
         }
+
+        binding.btnFaq.setOnClickListener {
+            startActivity(Intent(requireContext(),NewNutrition::class.java))
+        }
+
+        binding.btnEdtProfile.setOnClickListener{
+            startActivity(Intent(requireContext(), EditProfileActivity::class.java))
+        }
+
         return root
     }
 

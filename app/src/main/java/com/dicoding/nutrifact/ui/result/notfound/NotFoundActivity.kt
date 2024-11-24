@@ -1,5 +1,6 @@
 package com.dicoding.nutrifact.ui.result.notfound
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -7,6 +8,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.dicoding.nutrifact.R
 import com.dicoding.nutrifact.databinding.ActivityNotFoundBinding
+import com.dicoding.nutrifact.ui.addnew.NewNutrition
 
 class NotFoundActivity : AppCompatActivity() {
     private lateinit var binding: ActivityNotFoundBinding
@@ -22,6 +24,11 @@ class NotFoundActivity : AppCompatActivity() {
         binding.buttonHome.setOnClickListener{
             finish()
         }
+        binding.buttonAddNew.setOnClickListener{
+            startActivity(Intent(this, NewNutrition::class.java))
+        }
+
+
 
 
     }

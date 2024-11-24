@@ -6,8 +6,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.dicoding.nutrifact.R
+import com.dicoding.nutrifact.databinding.ActivityScanNutritionBinding
 
 class ScanNutrition : AppCompatActivity() {
+    private lateinit var binding: ActivityScanNutritionBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -17,5 +19,6 @@ class ScanNutrition : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
     }
 }

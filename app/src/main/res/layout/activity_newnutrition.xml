@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    tools:context=".ui.addnew.newnutrition">
+    tools:context=".ui.addnew.NewNutrition">
 
     <TextView
         android:id="@+id/tvBarcode"
@@ -96,25 +96,27 @@
         android:id="@+id/btnTakePhoto"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="32dp"
+        android:backgroundTint="@color/md_theme_primary"
         android:text="@string/textTake_a_photo"
-        android:backgroundTint="#4CAF50"
         android:textColor="@color/md_theme_onPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btnAnalyze"
-        android:layout_marginEnd="8dp" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 
     <Button
         android:id="@+id/btnAnalyze"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="32dp"
+        android:backgroundTint="@color/md_theme_primary"
         android:text="@string/textanalyze"
-        android:backgroundTint="#4CAF50"
         android:textColor="@color/md_theme_onPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@id/btnTakePhoto"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginStart="8dp" />
+        app:layout_constraintStart_toEndOf="@id/btnTakePhoto" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

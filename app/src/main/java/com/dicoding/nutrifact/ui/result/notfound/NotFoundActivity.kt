@@ -6,30 +6,29 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.dicoding.nutrifact.MainActivity
 import com.dicoding.nutrifact.R
 import com.dicoding.nutrifact.databinding.ActivityNotFoundBinding
 import com.dicoding.nutrifact.ui.addnew.NewNutrition
 
 class NotFoundActivity : AppCompatActivity() {
     private lateinit var binding: ActivityNotFoundBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContentView(R.layout.activity_not_found)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
-        binding.buttonHome.setOnClickListener{
+        binding = ActivityNotFoundBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        val barcodeValue = intent.getStringExtra("BARCODE_VALUE")
+
+        binding.buttonHome.setOnClickListener {
+            startActivity(Intent(this,MainActivity::class.java))
             finish()
         }
-        binding.buttonAddNew.setOnClickListener{
-            startActivity(Intent(this, NewNutrition::class.java))
+        binding.buttonAddNew.setOnClickListener {
+            val intent = Intent(this, NewNutrition::class.java)
+            intent.putExtra("BARCODE_VALUE", barcodeValue)
+            startActivity(intent)
         }
-
-
-
-
     }
 }

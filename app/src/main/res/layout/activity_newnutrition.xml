@@ -12,10 +12,11 @@
         android:id="@+id/tvBarcode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/text_barcode"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="24dp"
         android:textSize="16sp"
+        android:textStyle="bold"
         android:textColor="@color/md_theme_onSurface"
+        tools:text="@string/text_barcode"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -26,10 +27,7 @@
         android:id="@+id/tfproduct"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginBottom="16dp"
+        android:layout_margin="16dp"
         android:hint="@string/product"
         app:boxBackgroundMode="outline"
         app:boxCornerRadiusBottomEnd="8dp"
@@ -42,7 +40,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvBarcode">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <com.dicoding.nutrifact.custom.CustomEditText
             android:id="@+id/etProduct"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -57,7 +55,6 @@
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginRight="16dp"
-        android:layout_marginBottom="16dp"
         android:hint="@string/variant"
         app:boxBackgroundMode="outline"
         app:boxCornerRadiusBottomEnd="8dp"
@@ -70,7 +67,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tfproduct">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <com.dicoding.nutrifact.custom.CustomEditText
             android:id="@+id/etVariant"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -82,14 +79,25 @@
         android:id="@+id/image_nutrition"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:contentDescription="@string/image_nutrition_des"
-        app:layout_constraintTop_toBottomOf="@id/tfvariant"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/btnTakePhoto"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
-        />
+        android:background="@drawable/all_rounded"
+        android:contentDescription="@string/image_nutrition_des"
+        app:layout_constraintBottom_toTopOf="@+id/btnTakePhoto"
+        app:layout_constraintEnd_toEndOf="@+id/tfvariant"
+        app:layout_constraintStart_toStartOf="@+id/tfvariant"
+        app:layout_constraintTop_toBottomOf="@id/tfvariant" />
+
+    <TextView
+        android:id="@+id/tvMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/information_nutrition_fact"
+        android:textColor="@color/md_theme_onSurface"
+        app:layout_constraintBottom_toBottomOf="@+id/image_nutrition"
+        app:layout_constraintEnd_toEndOf="@+id/image_nutrition"
+        app:layout_constraintStart_toStartOf="@+id/image_nutrition"
+        app:layout_constraintTop_toTopOf="@+id/image_nutrition" />
 
 
     <Button
@@ -103,7 +111,7 @@
         android:textColor="@color/md_theme_onPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btnAnalyze"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="@+id/image_nutrition" />
 
 
     <Button
@@ -116,7 +124,7 @@
         android:text="@string/textanalyze"
         android:textColor="@color/md_theme_onPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/image_nutrition"
         app:layout_constraintStart_toEndOf="@id/btnTakePhoto" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

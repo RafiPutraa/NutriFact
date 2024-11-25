@@ -1,6 +1,7 @@
 package com.dicoding.nutrifact.data.response
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class ProductResponse(
 
@@ -32,5 +33,8 @@ data class ProductData(
 	val sugar: String? = null,
 
 	@field:SerializedName("barcodeId")
-	val barcodeId: String? = null
-)
+	val barcodeId: String? = null,
+
+	@field:SerializedName("imageURL")
+	val imageURL: String? = null
+): Serializable

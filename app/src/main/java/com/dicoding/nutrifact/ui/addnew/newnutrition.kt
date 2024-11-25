@@ -6,6 +6,7 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
@@ -56,6 +57,9 @@ class NewNutrition : AppCompatActivity() {
         }
 
         binding.btnTakePhoto.setOnClickListener { startCamera() }
+
+        val barcodeValue = intent.getStringExtra("BARCODE_VALUE")
+        binding.tvBarcode.text = "Barcode : $barcodeValue"
     }
 
     private fun startCamera() {
@@ -77,6 +81,7 @@ class NewNutrition : AppCompatActivity() {
         currentImageUri?.let {
             Log.d("Image URI", "showImage: $it")
             binding.imageNutrition.setImageURI(it)
+            binding.tvMessage.visibility = View.GONE
         }
     }
 

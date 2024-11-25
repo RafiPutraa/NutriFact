@@ -57,18 +57,4 @@
             app:iconSize="32dp" />
     </FrameLayout>
 
-    <TextView
-        android:id="@+id/barcodeResult"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:background="@color/md_theme_primary"
-        android:textColor="@color/md_theme_onPrimary"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

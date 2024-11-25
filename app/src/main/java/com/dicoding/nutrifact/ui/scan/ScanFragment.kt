@@ -25,8 +25,12 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import cn.pedant.SweetAlert.SweetAlertDialog
+import com.dicoding.nutrifact.data.ResultState
 import com.dicoding.nutrifact.databinding.FragmentScanBinding
+import com.dicoding.nutrifact.ui.ViewModelFactory
 import com.dicoding.nutrifact.ui.result.ResultActivity
+import com.dicoding.nutrifact.ui.result.notfound.NotFoundActivity
 import com.google.mlkit.vision.barcode.BarcodeScanning
 import com.google.mlkit.vision.common.InputImage
 import com.google.mlkit.vision.barcode.BarcodeScannerOptions
@@ -37,7 +41,10 @@ class ScanFragment : Fragment() {
 
     private var _binding: FragmentScanBinding? = null
     private val binding get() = _binding!!
-    private val scanViewModel: ScanViewModel by viewModels()
+    private val scanViewModel: ScanViewModel by viewModels{
+        ViewModelFactory.getInstance()
+    }
+    private var loadingDialog: SweetAlertDialog? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -85,11 +92,34 @@ class ScanFragment : Fragment() {
                     barcodeScanner.process(inputImage)
                         .addOnSuccessListener { barcodes ->
                             for (barcode in barcodes) {
-                                Log.d(TAG, "Detected barcode from image: ${barcode.rawValue}")
-                                binding.barcodeResult.text = barcode.rawValue ?: "No barcode found"
-                                val intent = Intent(requireContext(), ResultActivity::class.java)
-                                intent.putExtra("BARCODE_VALUE", barcode.rawValue)
-                                startActivity(intent)
+                                Log.d(TAG, "Detected barcode: ${barcode.rawValue}")
+                                barcode.rawValue?.let {
+                                    scanViewModel.getProductByBarcode(it)
+
+                                    scanViewModel.productResponse.observe(viewLifecycleOwner, Observer { result ->
+                                        when (result) {
+                                            is ResultState.Loading -> {
+                                                showLoading(true)
+                                            }
+                                            is ResultState.Success -> {
+                                                showLoading(false)
+                                                val product = result.data.data
+                                                if (product != null) {
+                                                    val intent = Intent(requireContext(), ResultActivity::class.java)
+                                                    intent.putExtra("PRODUCT_DATA", product)
+                                                    startActivity(intent)
+                                                }
+                                            }
+                                            is ResultState.Error -> {
+                                                showLoading(false)
+                                                Log.e(TAG, "Error: ${result.error}")
+                                                val intent = Intent(requireContext(),NotFoundActivity::class.java)
+                                                intent.putExtra("BARCODE_VALUE", barcode.rawValue)
+                                                startActivity(intent)
+                                            }
+                                        }
+                                    })
+                                }
                             }
                         }
                         .addOnFailureListener { e ->
@@ -159,10 +189,31 @@ class ScanFragment : Fragment() {
                                 for (barcode in barcodes) {
                                     Log.d(TAG, "Detected barcode: ${barcode.rawValue}")
                                     barcode.rawValue?.let {
-                                        binding.barcodeResult.text = it
-                                        val intent = Intent(requireContext(), ResultActivity::class.java)
-                                        intent.putExtra("BARCODE_VALUE", barcode.rawValue)
-                                        startActivity(intent)
+                                        scanViewModel.getProductByBarcode(it)
+
+                                        scanViewModel.productResponse.observe(viewLifecycleOwner, Observer { result ->
+                                            when (result) {
+                                                is ResultState.Loading -> {
+                                                    showLoading(true)
+                                                }
+                                                is ResultState.Success -> {
+                                                    showLoading(false)
+                                                    val product = result.data.data
+                                                    if (product != null) {
+                                                        val intent = Intent(requireContext(), ResultActivity::class.java)
+                                                        intent.putExtra("PRODUCT_DATA", product)
+                                                        startActivity(intent)
+                                                    }
+                                                }
+                                                is ResultState.Error -> {
+                                                    showLoading(false)
+                                                    Log.e(TAG, "Error: ${result.error}")
+                                                    val intent = Intent(requireContext(),NotFoundActivity::class.java)
+                                                    intent.putExtra("BARCODE_VALUE", barcode.rawValue)
+                                                    startActivity(intent)
+                                                }
+                                            }
+                                        })
                                     }
                                 }
                             }
@@ -208,6 +259,22 @@ class ScanFragment : Fragment() {
                 Log.e(TAG, "Camera binding error: ${exc.localizedMessage}", exc)
             }
         }, ContextCompat.getMainExecutor(requireContext()))
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        if (isLoading) {
+            if (loadingDialog == null) {
+                loadingDialog = SweetAlertDialog(requireContext(), SweetAlertDialog.PROGRESS_TYPE).apply {
+                    titleText = "Loading"
+                    setCancelable(false)
+                    show()
+                }
+            } else {
+                loadingDialog?.show()
+            }
+        } else {
+            loadingDialog?.dismissWithAnimation()
+        }
     }
 
     override fun onRequestPermissionsResult(

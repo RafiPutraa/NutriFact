@@ -72,4 +72,10 @@ dependencies {
 
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.7")
     implementation("androidx.activity:activity-ktx:1.8.0")
+
+//    SweetAlertDialog
+    implementation("com.github.f0ris.sweetalert:library:1.6.2")
+
+//    Glide
+    implementation("com.github.bumptech.glide:glide:4.16.0")
 }

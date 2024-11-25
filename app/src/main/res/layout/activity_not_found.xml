@@ -11,9 +11,9 @@
     <ImageView
         android:id="@+id/image_error"
         android:contentDescription="@string/title_home"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_marginTop="200dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="160dp"
         android:src="@drawable/ic_error"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,7 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/not_found"
-        android:textSize="20sp"
+        android:textSize="32sp"
         android:textStyle="bold"
         android:textColor="@color/md_theme_onSurface"
         app:layout_constraintTop_toBottomOf="@id/image_error"
@@ -36,7 +36,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/descrip_notfound"
-        android:textSize="14sp"
+        android:textSize="16sp"
         android:textColor="@color/md_theme_onSurface"
         app:layout_constraintTop_toBottomOf="@id/tv_notFound"
         app:layout_constraintStart_toStartOf="parent"
@@ -46,9 +46,9 @@
     <Button
         android:id="@+id/button_home"
         android:layout_width="0dp"
-        android:layout_height="48dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="56dp"
         android:layout_marginEnd="32dp"
         android:backgroundTint="@color/md_theme_primary"
         android:text="@string/title_home"
@@ -60,15 +60,14 @@
     <Button
         android:id="@+id/button_add_new"
         android:layout_width="0dp"
-        android:layout_height="48dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
-        android:backgroundTint="#4CAF50"
+        android:backgroundTint="#3E8C41"
         android:text="@string/add_new"
         android:textColor="@color/md_theme_onPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/button_home"
-        app:layout_constraintTop_toBottomOf="@id/tv_contribute"/>
+        app:layout_constraintTop_toTopOf="@+id/button_home" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

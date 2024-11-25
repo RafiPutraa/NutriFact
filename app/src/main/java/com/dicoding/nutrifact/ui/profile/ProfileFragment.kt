@@ -28,10 +28,10 @@ class ProfileFragment : Fragment() {
 
         binding.btnLogOut.setOnClickListener {
             startActivity(Intent(requireContext(),LoginActivity::class.java))
+            requireActivity().finish()
         }
 
         binding.btnFaq.setOnClickListener {
-            startActivity(Intent(requireContext(),NewNutrition::class.java))
         }
 
         binding.btnEdtProfile.setOnClickListener{

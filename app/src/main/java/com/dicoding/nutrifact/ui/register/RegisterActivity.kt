@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
+import cn.pedant.SweetAlert.SweetAlertDialog
 import com.dicoding.nutrifact.R
 import com.dicoding.nutrifact.data.ResultState
 import com.dicoding.nutrifact.databinding.ActivityRegisterBinding
@@ -20,6 +21,7 @@ class RegisterActivity : AppCompatActivity() {
     private val registerViewModel: RegisterViewModel by viewModels {
         ViewModelFactory.getInstance()
     }
+    private var loadingDialog: SweetAlertDialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -70,21 +72,45 @@ class RegisterActivity : AppCompatActivity() {
                 }
                 is ResultState.Success -> {
                     showLoading(false)
-                    Toast.makeText(this, "Registration Successful", Toast.LENGTH_SHORT).show()
-                    startActivity(Intent(this, LoginActivity::class.java))
-                    finish()
+                    SweetAlertDialog(this, SweetAlertDialog.SUCCESS_TYPE)
+                        .setTitleText("Registration Successful")
+                        .setContentText("You have successfully registered.\nPlease log in.")
+                        .setConfirmText("OK")
+                        .setConfirmClickListener {
+                            it.dismissWithAnimation()
+                            startActivity(Intent(this, LoginActivity::class.java))
+                            finish()
+                        }
+                        .show()
                 }
                 is ResultState.Error -> {
                     showLoading(false)
-                    showToast(result.error)
+                    SweetAlertDialog(this, SweetAlertDialog.ERROR_TYPE)
+                        .setTitleText("Registration Failed")
+                        .setContentText(result.error)
+                        .setConfirmText("OK")
+                        .setConfirmClickListener {
+                            it.dismissWithAnimation()
+                        }
+                        .show()
                 }
             }
         })
     }
 
     private fun showLoading(isLoading: Boolean) {
+        if (isLoading) {
+            if (loadingDialog == null) {
+                loadingDialog = SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE).apply {
+                    titleText = "Loading"
+                    setCancelable(false)
+                    show()
+                }
+            } else {
+                loadingDialog?.show()
+            }
+        } else {
+            loadingDialog?.dismissWithAnimation()
+        }
     }
-
-    private fun showToast(message: String) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-    }}
+}

@@ -25,8 +25,12 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import cn.pedant.SweetAlert.SweetAlertDialog
 import com.dicoding.nutrifact.data.ResultState
+import com.dicoding.nutrifact.data.local.HistoryRepository
+import com.dicoding.nutrifact.data.local.entity.HistoryEntity
+import com.dicoding.nutrifact.data.local.room.HistoryDatabase
 import com.dicoding.nutrifact.databinding.FragmentScanBinding
 import com.dicoding.nutrifact.ui.ViewModelFactory
 import com.dicoding.nutrifact.ui.result.ResultActivity
@@ -35,6 +39,7 @@ import com.google.mlkit.vision.barcode.BarcodeScanning
 import com.google.mlkit.vision.common.InputImage
 import com.google.mlkit.vision.barcode.BarcodeScannerOptions
 import com.google.mlkit.vision.barcode.common.Barcode
+import kotlinx.coroutines.launch
 import java.util.concurrent.TimeUnit
 
 class ScanFragment : Fragment() {
@@ -45,6 +50,7 @@ class ScanFragment : Fragment() {
         ViewModelFactory.getInstance()
     }
     private var loadingDialog: SweetAlertDialog? = null
+    private lateinit var historyRepository: HistoryRepository
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -62,6 +68,9 @@ class ScanFragment : Fragment() {
         } else {
             requestPermissions(arrayOf(Manifest.permission.CAMERA), CAMERA_PERMISSION_REQUEST_CODE)
         }
+
+        val historyDatabase = HistoryDatabase.getInstance(requireContext())
+        historyRepository = HistoryRepository.getInstance(historyDatabase)
 
         binding.btnImage.setOnClickListener { startGallery() }
         binding.btnCamera.setOnClickListener {
@@ -104,6 +113,16 @@ class ScanFragment : Fragment() {
                                             is ResultState.Success -> {
                                                 showLoading(false)
                                                 val product = result.data.data
+                                                val historyEntity = HistoryEntity(
+                                                    merk = result.data.data?.merk,
+                                                    varian = result.data.data?.varian,
+                                                    sugar = result.data.data?.sugar,
+                                                    fat = result.data.data?.fat,
+                                                    healthGrade = result.data.data?.healthGrade
+                                                )
+                                                lifecycleScope.launch {
+                                                    historyRepository.insertHistory(historyEntity)
+                                                }
                                                 if (product != null) {
                                                     val intent = Intent(requireContext(), ResultActivity::class.java)
                                                     intent.putExtra("PRODUCT_DATA", product)
@@ -199,6 +218,16 @@ class ScanFragment : Fragment() {
                                                 is ResultState.Success -> {
                                                     showLoading(false)
                                                     val product = result.data.data
+                                                    val historyEntity = HistoryEntity(
+                                                        merk = result.data.data?.merk,
+                                                        varian = result.data.data?.varian,
+                                                        sugar = result.data.data?.sugar,
+                                                        fat = result.data.data?.fat,
+                                                        healthGrade = result.data.data?.healthGrade
+                                                    )
+                                                    lifecycleScope.launch {
+                                                        historyRepository.insertHistory(historyEntity)
+                                                    }
                                                     if (product != null) {
                                                         val intent = Intent(requireContext(), ResultActivity::class.java)
                                                         intent.putExtra("PRODUCT_DATA", product)
@@ -276,6 +305,7 @@ class ScanFragment : Fragment() {
             loadingDialog?.dismissWithAnimation()
         }
     }
+
 
     override fun onRequestPermissionsResult(
         requestCode: Int,

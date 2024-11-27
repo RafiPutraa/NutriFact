@@ -6,9 +6,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
-    android:layout_marginStart="8dp"
+    android:layout_marginStart="16dp"
     android:layout_marginTop="4dp"
-    android:layout_marginEnd="8dp"
+    android:layout_marginEnd="16dp"
     android:layout_marginBottom="4dp"
     app:cardCornerRadius="16dp">
 
@@ -17,52 +17,76 @@
         android:layout_height="wrap_content"
         android:background="@color/md_theme_primaryContainer">
 
-
         <ImageView
             android:id="@+id/imgGrade_logo"
+            android:layout_width="105dp"
+            android:layout_height="105dp"
             android:padding="8dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.017"
+            android:layout_marginStart="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/textLayout"
+            app:layout_constraintEnd_toStartOf="@+id/textLayout"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textLayout"
             tools:src="@drawable/grade_a" />
 
         <LinearLayout
+            android:id="@+id/textLayout"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="28dp"
+            android:layout_margin="8dp"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/imgGrade_logo"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0">
+            app:layout_constraintTop_toTopOf="parent" >
 
             <TextView
                 android:id="@+id/tvProductName"
-                android:textSize="24sp"
-                android:textStyle="bold"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
-                android:text="@string/product_name"
-                android:textColor="@color/md_theme_onPrimaryContainer" />
+                android:textColor="@color/md_theme_onPrimaryContainer"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                tools:text="@string/product_name" />
 
             <TextView
                 android:id="@+id/tvVariantName"
-                android:textSize="16sp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:text="@string/variant"
-                android:textColor="@color/md_theme_onPrimaryContainer" />
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:textColor="@color/md_theme_onPrimaryContainer"
+                android:textSize="16sp"
+                tools:text="@string/variant" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvSugar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:layout_weight="1"
+                    android:textColor="@color/md_theme_onPrimaryContainer"
+                    android:textSize="16sp"
+                    tools:text="Sugar :" />
+
+                <TextView
+                    android:id="@+id/tvFat"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:layout_weight="1"
+                    android:textColor="@color/md_theme_onPrimaryContainer"
+                    android:textSize="16sp"
+                    tools:text="Fat :" />
+            </LinearLayout>
 
         </LinearLayout>
 

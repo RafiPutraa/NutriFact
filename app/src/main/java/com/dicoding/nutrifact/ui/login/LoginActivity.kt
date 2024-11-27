@@ -55,11 +55,7 @@ class LoginActivity : AppCompatActivity() {
                     showLoading(false)
                     val loginResponse = result.data
                     val token = loginResponse.data?.token
-                    val intent = Intent(this, MainActivity::class.java).apply {
-                        putExtra("EXTRA_TOKEN", token)
-
-                    }
-                    startActivity(intent)
+                    startActivity(Intent(this, MainActivity::class.java))
                     finish()
                 }
                 is ResultState.Error -> {

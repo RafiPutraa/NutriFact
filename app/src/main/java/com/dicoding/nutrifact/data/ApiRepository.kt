@@ -7,6 +7,8 @@ import com.dicoding.nutrifact.data.response.ProductResponse
 import com.dicoding.nutrifact.data.response.RegisterResponse
 import com.google.gson.Gson
 import retrofit2.HttpException
+import java.io.IOException
+import java.net.SocketTimeoutException
 
 class ApiRepository private constructor(
     private val apiService: ApiService
@@ -19,7 +21,13 @@ class ApiRepository private constructor(
         } catch (e: HttpException) {
             val errorBody = e.response()?.errorBody()?.string()
             val errorResponse = Gson().fromJson(errorBody, LoginResponse::class.java)
-            emit(ResultState.Error(errorResponse.message ?: "Unknown Error"))
+            emit(ResultState.Error(errorResponse.message ?: "An error occurred during login"))
+        } catch (e: SocketTimeoutException) {
+            emit(ResultState.Error("The server is not responding. Please try again later."))
+        } catch (e: IOException) {
+            emit(ResultState.Error("Unable to connect to the server. Check your internet connection."))
+        } catch (e: Exception) {
+            emit(ResultState.Error(e.message ?: "An unexpected error occurred."))
         }
     }
 
@@ -31,7 +39,13 @@ class ApiRepository private constructor(
         } catch (e: HttpException) {
             val errorBody = e.response()?.errorBody()?.string()
             val errorResponse = Gson().fromJson(errorBody, RegisterResponse::class.java)
-            emit(ResultState.Error(errorResponse.message ?: "Unknown Error"))
+            emit(ResultState.Error(errorResponse.message ?: "An error occurred during registration"))
+        } catch (e: SocketTimeoutException) {
+            emit(ResultState.Error("The server is not responding. Please try again later."))
+        } catch (e: IOException) {
+            emit(ResultState.Error("Unable to connect to the server. Check your internet connection."))
+        } catch (e: Exception) {
+            emit(ResultState.Error(e.message ?: "An unexpected error occurred."))
         }
     }
 
@@ -43,9 +57,13 @@ class ApiRepository private constructor(
         } catch (e: HttpException) {
             val errorBody = e.response()?.errorBody()?.string()
             val errorResponse = Gson().fromJson(errorBody, ProductResponse::class.java)
-            emit(ResultState.Error(errorResponse.message ?: "Unknown Error"))
+            emit(ResultState.Error(errorResponse.message ?: "Product not found"))
+        } catch (e: SocketTimeoutException) {
+            emit(ResultState.Error("The server is not responding. Please try again later."))
+        } catch (e: IOException) {
+            emit(ResultState.Error("Unable to connect to the server. Check your internet connection."))
         } catch (e: Exception) {
-            emit(ResultState.Error(e.message ?: "An unexpected error occurred"))
+            emit(ResultState.Error(e.message ?: "An unexpected error occurred."))
         }
     }
 

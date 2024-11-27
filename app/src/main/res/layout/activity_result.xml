@@ -72,7 +72,7 @@
             app:layout_constraintEnd_toStartOf="@+id/tvFat"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvVariant"
-            tools:text="Sugar = 14g" />
+            tools:text="Sugar : 14g" />
 
         <TextView
             android:id="@+id/tvFat"
@@ -82,30 +82,19 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/tvSugar"
             app:layout_constraintTop_toBottomOf="@+id/tvVariant"
-            tools:text="Fat = 7g" />
+            tools:text="Fat : 7g" />
 
-<!--        <TextView-->
-<!--            android:id="@+id/tvDesc"-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_margin="24dp"-->
-<!--            android:justificationMode="inter_word"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/tvSugar"-->
-<!--            tools:text="Lorem ipsum odor amet, consectetuer adipiscing elit. Nibh erat cursus vivamus habitasse curae sit fringilla. Ante cras porttitor a auctor egestas maecenas sit class. Tellus leo ad rhoncus ultrices rutrum eleifend morbi ornare. Litora felis in vulputate consectetur potenti finibus ipsum varius? Nascetur finibus varius facilisi semper blandit suspendisse pharetra. Ligula aptent posuere sapien sem dictumst, iaculis feugiat pellentesque." />-->
-
-        <ImageView
-            android:id="@+id/imgProduct"
+        <TextView
+            android:id="@+id/tvDesc"
             android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
-            android:scaleType="fitCenter"
-            app:layout_constraintBottom_toTopOf="@+id/btnHome"
-            app:layout_constraintEnd_toEndOf="@+id/tvFat"
-            app:layout_constraintStart_toStartOf="@+id/tvSugar"
-            app:layout_constraintTop_toBottomOf="@+id/tvSugar" />
+            android:layout_height="wrap_content"
+            android:layout_margin="24dp"
+            android:justificationMode="inter_word"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvSugar"
+            tools:text="Lorem ipsum odor amet, consectetuer adipiscing elit. Nibh erat cursus vivamus habitasse curae sit fringilla. Ante cras porttitor a auctor egestas maecenas sit class. Tellus leo ad rhoncus ultrices rutrum eleifend morbi ornare. Litora felis in vulputate consectetur potenti finibus ipsum varius? Nascetur finibus varius facilisi semper blandit suspendisse pharetra. Ligula aptent posuere sapien sem dictumst, iaculis feugiat pellentesque." />
 
         <Button
             android:id="@+id/btnHome"

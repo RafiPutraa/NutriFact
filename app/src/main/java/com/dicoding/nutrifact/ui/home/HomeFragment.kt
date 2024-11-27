@@ -1,5 +1,6 @@
 package com.dicoding.nutrifact.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.SpannableString
 import android.text.Spanned
@@ -12,6 +13,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.dicoding.nutrifact.databinding.FragmentHomeBinding
+import com.dicoding.nutrifact.ui.history.HistoryActivity
 
 class HomeFragment : Fragment() {
 
@@ -29,6 +31,10 @@ class HomeFragment : Fragment() {
         val spannable = SpannableString(binding.tvViewAll.text)
         spannable.setSpan(UnderlineSpan(), 0, spannable.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
         binding.tvViewAll.text = spannable
+        binding.tvViewAll.setOnClickListener {
+            startActivity(Intent(requireContext(),HistoryActivity::class.java))
+        }
+
 
         return root
     }

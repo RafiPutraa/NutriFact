@@ -1,5 +1,6 @@
 package com.dicoding.nutrifact.ui.profile
 
+import android.content.Context.MODE_PRIVATE
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater

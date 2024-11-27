@@ -30,12 +30,11 @@ class ResultActivity : AppCompatActivity() {
         val sugar = productData?.sugar
         val fat = productData?.fat
         val healthGrade = productData?.healthGrade
-        val imageUrl = productData?.imageURL
 
         binding.tvProduct.text = merk
         binding.tvVariant.text = varian
-        binding.tvSugar.text = "Sugar = ${sugar}g"
-        binding.tvFat.text = "Fat = ${fat}g"
+        binding.tvSugar.text = "Sugar : ${sugar}g"
+        binding.tvFat.text = "Fat : ${fat}g"
         when (healthGrade) {
             "A" -> {
                 Glide.with(this)
@@ -63,9 +62,6 @@ class ResultActivity : AppCompatActivity() {
                     .into(binding.imgGrade)
             }
         }
-        Glide.with(this)
-            .load(imageUrl)
-            .into(binding.imgProduct)
 
         binding.btnHome.setOnClickListener {
             startActivity(Intent(this, MainActivity::class.java))

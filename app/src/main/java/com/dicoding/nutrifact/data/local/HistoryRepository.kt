@@ -10,6 +10,10 @@ class HistoryRepository(private val historyDao: HistoryDao) {
         return historyDao.getHistory()
     }
 
+    fun getLastTenHistory(): LiveData<List<HistoryEntity>> {
+        return historyDao.getLastTenHistory()
+    }
+
     suspend fun insertHistory(history: HistoryEntity) {
         historyDao.insert(history)
     }

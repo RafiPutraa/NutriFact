@@ -11,6 +11,9 @@ interface HistoryDao {
     @Query("SELECT * FROM result_history ORDER BY id DESC")
     fun getHistory(): LiveData<List<HistoryEntity>>
 
+    @Query("SELECT * FROM result_history ORDER BY id DESC LIMIT 10")
+    fun getLastTenHistory(): LiveData<List<HistoryEntity>>
+
     @Insert
     suspend fun insert(history: HistoryEntity)
 

@@ -21,9 +21,8 @@ class CarouselAdapter(private val historyList: List<HistoryEntity>) :
 
     override fun getItemCount(): Int = historyList.size
 
-    class MyViewHolder(private val binding: HistoryCarouselBinding) :
+    class MyViewHolder(val binding: HistoryCarouselBinding) :
         RecyclerView.ViewHolder(binding.root) {
-
         fun bind(history: HistoryEntity) {
             val healthGrade = history.healthGrade
 

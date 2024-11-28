@@ -6,11 +6,12 @@ import android.text.SpannableString
 import android.text.Spanned
 import androidx.lifecycle.Observer
 import android.text.style.UnderlineSpan
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearSnapHelper
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.nutrifact.data.local.HistoryRepository
 import com.dicoding.nutrifact.data.local.room.HistoryDatabase
 import com.dicoding.nutrifact.databinding.FragmentHomeBinding
@@ -44,16 +45,17 @@ class HomeFragment : Fragment() {
         carouselAdapter = CarouselAdapter(emptyList())
 
 
-        binding.vpCarousel.adapter = carouselAdapter
+        binding.rvCarousel.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        binding.rvCarousel.adapter = carouselAdapter
         historyRepository.getLastTenHistory().observe(viewLifecycleOwner, Observer { historyList ->
             if (historyList.isEmpty()) {
                 binding.tvError.visibility = View.VISIBLE
-                binding.vpCarousel.visibility = View.GONE
+                binding.rvCarousel.visibility = View.GONE
             } else {
                 binding.tvError.visibility = View.GONE
-                binding.vpCarousel.visibility = View.VISIBLE
+                binding.rvCarousel.visibility = View.VISIBLE
                 carouselAdapter = CarouselAdapter(historyList)
-                binding.vpCarousel.adapter = carouselAdapter
+                binding.rvCarousel.adapter = carouselAdapter
             }
         })
 

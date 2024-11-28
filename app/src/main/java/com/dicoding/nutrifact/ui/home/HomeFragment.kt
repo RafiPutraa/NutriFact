@@ -47,6 +47,13 @@ class HomeFragment : Fragment() {
 
         binding.rvCarousel.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         binding.rvCarousel.adapter = carouselAdapter
+
+        fetchData()
+
+        return root
+    }
+
+    private fun fetchData(){
         historyRepository.getLastTenHistory().observe(viewLifecycleOwner, Observer { historyList ->
             if (historyList.isEmpty()) {
                 binding.tvError.visibility = View.VISIBLE
@@ -58,8 +65,11 @@ class HomeFragment : Fragment() {
                 binding.rvCarousel.adapter = carouselAdapter
             }
         })
+    }
 
-        return root
+    override fun onResume() {
+        super.onResume()
+        fetchData()
     }
 
     override fun onDestroyView() {

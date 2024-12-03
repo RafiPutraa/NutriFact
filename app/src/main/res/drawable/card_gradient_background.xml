@@ -2,10 +2,13 @@
     <item>
         <shape>
             <gradient
-                android:angle="90"
-                android:startColor="@color/md_theme_primary"
-                android:endColor="@color/md_theme_onPrimaryContainer"
+                android:angle="135"
+                android:startColor="@color/md_theme_onPrimaryContainer"
+                android:endColor="@color/md_theme_primary"
                 android:type="linear" />
+            <corners
+                android:bottomLeftRadius="16dp"
+                android:bottomRightRadius="16dp"/>
         </shape>
     </item>
 </selector>

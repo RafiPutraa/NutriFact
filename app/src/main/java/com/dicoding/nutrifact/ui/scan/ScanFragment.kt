@@ -32,7 +32,7 @@ import com.dicoding.nutrifact.data.local.HistoryRepository
 import com.dicoding.nutrifact.data.local.entity.HistoryEntity
 import com.dicoding.nutrifact.data.local.room.HistoryDatabase
 import com.dicoding.nutrifact.databinding.FragmentScanBinding
-import com.dicoding.nutrifact.ui.ViewModelFactory
+import com.dicoding.nutrifact.viewmodel.ViewModelFactory
 import com.dicoding.nutrifact.ui.result.ResultActivity
 import com.dicoding.nutrifact.ui.result.NotFoundActivity
 import com.dicoding.nutrifact.viewmodel.ScanViewModel

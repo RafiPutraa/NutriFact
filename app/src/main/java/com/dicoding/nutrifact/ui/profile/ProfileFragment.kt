@@ -1,27 +1,22 @@
 package com.dicoding.nutrifact.ui.profile
 
-import android.content.Context.MODE_PRIVATE
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
-import com.dicoding.nutrifact.R
 import com.dicoding.nutrifact.data.ResultState
 import com.dicoding.nutrifact.databinding.FragmentProfileBinding
-import com.dicoding.nutrifact.ui.UserViewModelFactory
-import com.dicoding.nutrifact.ui.ViewModelFactory
-import com.dicoding.nutrifact.ui.addnew.NewNutrition
+import com.dicoding.nutrifact.viewmodel.UserViewModelFactory
+import com.dicoding.nutrifact.viewmodel.ViewModelFactory
 import com.dicoding.nutrifact.ui.editprofile.EditProfileActivity
 import com.dicoding.nutrifact.ui.login.LoginActivity
 import com.dicoding.nutrifact.viewmodel.AuthViewModel
+import com.dicoding.nutrifact.viewmodel.ProfileViewModel
 
 class ProfileFragment : Fragment() {
 
@@ -84,9 +79,15 @@ class ProfileFragment : Fragment() {
         }
     }
 
-    fun showLoading(isLoading: Boolean) {
+    private fun showLoading(isLoading: Boolean) {
         binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
+
+    override fun onResume() {
+        super.onResume()
+        profileViewModel.getProfile()
+    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

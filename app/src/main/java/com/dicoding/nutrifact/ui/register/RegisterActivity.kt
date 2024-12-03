@@ -11,7 +11,7 @@ import cn.pedant.SweetAlert.SweetAlertDialog
 import com.dicoding.nutrifact.R
 import com.dicoding.nutrifact.data.ResultState
 import com.dicoding.nutrifact.databinding.ActivityRegisterBinding
-import com.dicoding.nutrifact.ui.UserViewModelFactory
+import com.dicoding.nutrifact.viewmodel.UserViewModelFactory
 import com.dicoding.nutrifact.ui.login.LoginActivity
 import com.dicoding.nutrifact.viewmodel.AuthViewModel
 

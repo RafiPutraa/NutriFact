@@ -9,7 +9,7 @@ import androidx.lifecycle.lifecycleScope
 import com.dicoding.nutrifact.data.local.HistoryRepository
 import com.dicoding.nutrifact.data.local.room.HistoryDatabase
 import com.dicoding.nutrifact.databinding.ActivityHistoryBinding
-import com.dicoding.nutrifact.ui.adapter.HistoryAdapter
+import com.dicoding.nutrifact.adapter.HistoryAdapter
 import kotlinx.coroutines.launch
 
 class HistoryActivity : AppCompatActivity() {

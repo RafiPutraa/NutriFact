@@ -8,10 +8,10 @@
     tools:context=".ui.editprofile.EditProfileActivity">
 
     <TextView
-        android:id="@+id/tvRegister"
+        android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="96dp"
+        android:layout_marginTop="56dp"
         android:text="@string/edit_profile_head"
         android:textSize="32sp"
         android:textStyle="bold"
@@ -19,14 +19,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/imgProfile"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="56dp"
+        android:scaleType="fitXY"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTitle"
+        app:shapeAppearanceOverlay="@style/circularImage"
+        tools:src="@tools:sample/backgrounds/scenic" />
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/ilUsername"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="48dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginBottom="16dp"
+        android:layout_margin="16dp"
         android:hint="@string/username"
         app:boxBackgroundMode="outline"
         app:boxCornerRadiusBottomEnd="8dp"
@@ -38,35 +47,10 @@
         app:endIconMode="clear_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvRegister">
+        app:layout_constraintTop_toBottomOf="@+id/imgProfile">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <com.dicoding.nutrifact.custom.CustomEditText
             android:id="@+id/etUsername"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="text" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/ilEmail"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:hint="@string/email"
-        app:boxBackgroundMode="outline"
-        app:boxCornerRadiusBottomEnd="8dp"
-        app:boxCornerRadiusBottomStart="8dp"
-        app:boxCornerRadiusTopEnd="8dp"
-        app:boxCornerRadiusTopStart="8dp"
-        app:boxStrokeColor="@color/md_theme_primary"
-        app:boxStrokeErrorColor="@color/md_theme_error"
-        app:endIconMode="clear_text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ilUsername">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text" />
@@ -88,9 +72,9 @@
         app:endIconMode="password_toggle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ilEmail">
+        app:layout_constraintTop_toBottomOf="@+id/ilUsername">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <com.dicoding.nutrifact.custom.CustomEditText
             android:id="@+id/etPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -99,19 +83,32 @@
 
     <Button
         android:id="@+id/btnSave"
-        android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="32dp"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="32dp"
         android:backgroundTint="@color/md_theme_primary"
         android:text="@string/save"
-        android:textColor="@color/md_theme_onPrimary"
         android:textAllCaps="false"
+        android:textColor="@color/md_theme_onPrimary"
         android:textSize="16sp"
         app:cornerRadius="24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/ilPassword" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

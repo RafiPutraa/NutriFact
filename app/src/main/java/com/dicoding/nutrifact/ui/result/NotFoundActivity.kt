@@ -3,7 +3,7 @@ package com.dicoding.nutrifact.ui.result
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.dicoding.nutrifact.MainActivity
+import com.dicoding.nutrifact.ui.MainActivity
 import com.dicoding.nutrifact.databinding.ActivityNotFoundBinding
 import com.dicoding.nutrifact.ui.addnew.NewNutrition
 
@@ -18,7 +18,7 @@ class NotFoundActivity : AppCompatActivity() {
         val barcodeValue = intent.getStringExtra("BARCODE_VALUE")
 
         binding.buttonHome.setOnClickListener {
-            startActivity(Intent(this,MainActivity::class.java))
+            startActivity(Intent(this, MainActivity::class.java))
             finishAffinity()
         }
         binding.buttonAddNew.setOnClickListener {

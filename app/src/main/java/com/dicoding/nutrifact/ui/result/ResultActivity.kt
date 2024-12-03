@@ -2,14 +2,9 @@ package com.dicoding.nutrifact.ui.result
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.ImageView
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.navigation.findNavController
 import com.bumptech.glide.Glide
-import com.dicoding.nutrifact.MainActivity
+import com.dicoding.nutrifact.ui.MainActivity
 import com.dicoding.nutrifact.R
 import com.dicoding.nutrifact.data.response.ProductData
 import com.dicoding.nutrifact.databinding.ActivityResultBinding

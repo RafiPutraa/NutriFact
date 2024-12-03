@@ -7,10 +7,10 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import cn.pedant.SweetAlert.SweetAlertDialog
-import com.dicoding.nutrifact.MainActivity
+import com.dicoding.nutrifact.ui.MainActivity
 import com.dicoding.nutrifact.data.ResultState
 import com.dicoding.nutrifact.databinding.ActivityLoginBinding
-import com.dicoding.nutrifact.ui.UserViewModelFactory
+import com.dicoding.nutrifact.viewmodel.UserViewModelFactory
 import com.dicoding.nutrifact.ui.register.RegisterActivity
 import com.dicoding.nutrifact.viewmodel.AuthViewModel
 

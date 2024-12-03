@@ -1,12 +1,11 @@
-package com.dicoding.nutrifact
+package com.dicoding.nutrifact.ui
 
 import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.dicoding.nutrifact.R
 import com.dicoding.nutrifact.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {

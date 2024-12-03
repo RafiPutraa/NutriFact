@@ -7,6 +7,8 @@ import com.dicoding.nutrifact.data.response.LoginResponse
 import com.dicoding.nutrifact.data.response.ProductResponse
 import com.dicoding.nutrifact.data.response.RegisterResponse
 import com.google.gson.Gson
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.HttpException
 import java.io.IOException
 import java.net.SocketTimeoutException
@@ -40,6 +42,23 @@ class ApiRepository private constructor(
         } catch (e: HttpException) {
             val errorBody = e.response()?.errorBody()?.string()
             emit(ResultState.Error(errorBody ?: "Failed to fetch profile data."))
+        } catch (e: SocketTimeoutException) {
+            emit(ResultState.Error("The server is not responding. Please try again later."))
+        } catch (e: IOException) {
+            emit(ResultState.Error("Unable to connect to the server. Check your internet connection."))
+        } catch (e: Exception) {
+            emit(ResultState.Error(e.message ?: "An unexpected error occurred."))
+        }
+    }
+
+    fun updateProfile(name: RequestBody, password: RequestBody, file: MultipartBody.Part) = liveData {
+        emit(ResultState.Loading)
+        try {
+            val profileResponse = apiService.updateProfile(name, password, file)
+            emit(ResultState.Success(profileResponse))
+        } catch (e: HttpException) {
+            val errorBody = e.response()?.errorBody()?.string()
+            emit(ResultState.Error(errorBody ?: "Failed to update profile."))
         } catch (e: SocketTimeoutException) {
             emit(ResultState.Error("The server is not responding. Please try again later."))
         } catch (e: IOException) {

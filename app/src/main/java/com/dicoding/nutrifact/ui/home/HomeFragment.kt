@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.nutrifact.data.local.HistoryRepository
 import com.dicoding.nutrifact.data.local.room.HistoryDatabase
 import com.dicoding.nutrifact.databinding.FragmentHomeBinding
-import com.dicoding.nutrifact.ui.adapter.CarouselAdapter
+import com.dicoding.nutrifact.adapter.CarouselAdapter
 import com.dicoding.nutrifact.ui.history.HistoryActivity
 
 class HomeFragment : Fragment() {

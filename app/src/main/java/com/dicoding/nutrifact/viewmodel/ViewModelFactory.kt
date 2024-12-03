@@ -1,12 +1,10 @@
-package com.dicoding.nutrifact.ui
+package com.dicoding.nutrifact.viewmodel
 
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.dicoding.nutrifact.data.repository.ApiRepository
 import com.dicoding.nutrifact.data.di.Injection
-import com.dicoding.nutrifact.ui.profile.ProfileViewModel
-import com.dicoding.nutrifact.viewmodel.ScanViewModel
 
 class ViewModelFactory(private val apiRepository: ApiRepository) : ViewModelProvider.NewInstanceFactory() {
 

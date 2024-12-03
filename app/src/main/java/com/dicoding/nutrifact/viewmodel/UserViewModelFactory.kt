@@ -1,11 +1,10 @@
-package com.dicoding.nutrifact.ui
+package com.dicoding.nutrifact.viewmodel
 
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.dicoding.nutrifact.data.di.Injection
 import com.dicoding.nutrifact.data.repository.AuthRepository
-import com.dicoding.nutrifact.viewmodel.AuthViewModel
 
 class UserViewModelFactory(private  val authRepository: AuthRepository) : ViewModelProvider.NewInstanceFactory() {
     @Suppress("UNCHECKED_CAST")

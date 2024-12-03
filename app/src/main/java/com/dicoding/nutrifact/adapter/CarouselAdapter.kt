@@ -1,4 +1,4 @@
-package com.dicoding.nutrifact.ui.adapter
+package com.dicoding.nutrifact.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,12 +6,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.dicoding.nutrifact.R
 import com.dicoding.nutrifact.data.local.entity.HistoryEntity
-import com.dicoding.nutrifact.databinding.ProductItemBinding
+import com.dicoding.nutrifact.databinding.HistoryCarouselBinding
 
-class HistoryAdapter(private val historyList: List<HistoryEntity>,
-) : RecyclerView.Adapter<HistoryAdapter.MyViewHolder>() {
+class CarouselAdapter(private val historyList: List<HistoryEntity>) :
+    RecyclerView.Adapter<CarouselAdapter.MyViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val binding = ProductItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = HistoryCarouselBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return MyViewHolder(binding)
     }
 
@@ -21,41 +21,39 @@ class HistoryAdapter(private val historyList: List<HistoryEntity>,
 
     override fun getItemCount(): Int = historyList.size
 
-    class MyViewHolder(val binding: ProductItemBinding) :
+    class MyViewHolder(val binding: HistoryCarouselBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(history: HistoryEntity) {
             val healthGrade = history.healthGrade
 
-            binding.tvProductName.text = history.merk
-            binding.tvVariantName.text = history.varian
-            binding.tvSugar.text = "Sugar : ${history.sugar}g"
-            binding.tvFat.text = "Fat : ${history.fat}g"
+            binding.tvProduct.text = history.merk
+            binding.tvVariant.text = history.varian
 
             when (healthGrade) {
                 "A" -> {
                     Glide.with(binding.root.context)
                         .load(R.drawable.grade_a)
-                        .into(binding.imgGradeLogo)
+                        .into(binding.imgGrade)
                 }
                 "B" -> {
                     Glide.with(binding.root.context)
                         .load(R.drawable.grade_b)
-                        .into(binding.imgGradeLogo)
+                        .into(binding.imgGrade)
                 }
                 "C" -> {
                     Glide.with(binding.root.context)
                         .load(R.drawable.grade_c)
-                        .into(binding.imgGradeLogo)
+                        .into(binding.imgGrade)
                 }
                 "D" -> {
                     Glide.with(binding.root.context)
                         .load(R.drawable.grade_d)
-                        .into(binding.imgGradeLogo)
+                        .into(binding.imgGrade)
                 }
                 "E" -> {
                     Glide.with(binding.root.context)
                         .load(R.drawable.grade_e)
-                        .into(binding.imgGradeLogo)
+                        .into(binding.imgGrade)
                 }
             }
         }

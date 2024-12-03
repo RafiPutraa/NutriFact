@@ -34,7 +34,8 @@ import com.dicoding.nutrifact.data.local.room.HistoryDatabase
 import com.dicoding.nutrifact.databinding.FragmentScanBinding
 import com.dicoding.nutrifact.ui.ViewModelFactory
 import com.dicoding.nutrifact.ui.result.ResultActivity
-import com.dicoding.nutrifact.ui.result.notfound.NotFoundActivity
+import com.dicoding.nutrifact.ui.result.NotFoundActivity
+import com.dicoding.nutrifact.viewmodel.ScanViewModel
 import com.google.mlkit.vision.barcode.BarcodeScanning
 import com.google.mlkit.vision.common.InputImage
 import com.google.mlkit.vision.barcode.BarcodeScannerOptions
@@ -47,7 +48,7 @@ class ScanFragment : Fragment() {
     private var _binding: FragmentScanBinding? = null
     private val binding get() = _binding!!
     private val scanViewModel: ScanViewModel by viewModels{
-        ViewModelFactory.getInstance()
+        ViewModelFactory.getInstance(requireContext())
     }
     private var loadingDialog: SweetAlertDialog? = null
     private lateinit var historyRepository: HistoryRepository
@@ -59,15 +60,7 @@ class ScanFragment : Fragment() {
     ): View {
         _binding = FragmentScanBinding.inflate(inflater, container, false)
 
-        if (ContextCompat.checkSelfPermission(
-                requireContext(),
-                Manifest.permission.CAMERA
-            ) == PackageManager.PERMISSION_GRANTED
-        ) {
-            startCamera()
-        } else {
-            requestPermissions(arrayOf(Manifest.permission.CAMERA), CAMERA_PERMISSION_REQUEST_CODE)
-        }
+        checkCameraPermission()
 
         val historyDatabase = HistoryDatabase.getInstance(requireContext())
         historyRepository = HistoryRepository.getInstance(historyDatabase)
@@ -132,7 +125,8 @@ class ScanFragment : Fragment() {
                                             is ResultState.Error -> {
                                                 showLoading(false)
                                                 Log.e(TAG, "Error: ${result.error}")
-                                                val intent = Intent(requireContext(),NotFoundActivity::class.java)
+                                                val intent = Intent(requireContext(),
+                                                    NotFoundActivity::class.java)
                                                 intent.putExtra("BARCODE_VALUE", barcode.rawValue)
                                                 startActivity(intent)
                                             }
@@ -157,6 +151,18 @@ class ScanFragment : Fragment() {
         })
 
         return binding.root
+    }
+
+    private fun checkCameraPermission() {
+        if (ContextCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.CAMERA
+            ) == PackageManager.PERMISSION_GRANTED
+        ) {
+            startCamera()
+        } else {
+            requestPermissions(arrayOf(Manifest.permission.CAMERA), CAMERA_PERMISSION_REQUEST_CODE)
+        }
     }
 
     private val launcherGallery = registerForActivityResult(
@@ -237,7 +243,8 @@ class ScanFragment : Fragment() {
                                                 is ResultState.Error -> {
                                                     showLoading(false)
                                                     Log.e(TAG, "Error: ${result.error}")
-                                                    val intent = Intent(requireContext(),NotFoundActivity::class.java)
+                                                    val intent = Intent(requireContext(),
+                                                        NotFoundActivity::class.java)
                                                     intent.putExtra("BARCODE_VALUE", barcode.rawValue)
                                                     startActivity(intent)
                                                 }
@@ -292,17 +299,16 @@ class ScanFragment : Fragment() {
 
     private fun showLoading(isLoading: Boolean) {
         if (isLoading) {
-            if (loadingDialog == null) {
+            if (loadingDialog == null || !loadingDialog!!.isShowing) {
                 loadingDialog = SweetAlertDialog(requireContext(), SweetAlertDialog.PROGRESS_TYPE).apply {
                     titleText = "Loading"
                     setCancelable(false)
                     show()
                 }
-            } else {
-                loadingDialog?.show()
             }
         } else {
             loadingDialog?.dismissWithAnimation()
+            loadingDialog = null
         }
     }
 

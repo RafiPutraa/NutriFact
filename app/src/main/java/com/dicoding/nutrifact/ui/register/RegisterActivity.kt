@@ -2,8 +2,6 @@ package com.dicoding.nutrifact.ui.register
 
 import android.content.Intent
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -13,13 +11,14 @@ import cn.pedant.SweetAlert.SweetAlertDialog
 import com.dicoding.nutrifact.R
 import com.dicoding.nutrifact.data.ResultState
 import com.dicoding.nutrifact.databinding.ActivityRegisterBinding
-import com.dicoding.nutrifact.ui.ViewModelFactory
+import com.dicoding.nutrifact.ui.UserViewModelFactory
 import com.dicoding.nutrifact.ui.login.LoginActivity
+import com.dicoding.nutrifact.viewmodel.AuthViewModel
 
 class RegisterActivity : AppCompatActivity() {
     private lateinit var binding : ActivityRegisterBinding
-    private val registerViewModel: RegisterViewModel by viewModels {
-        ViewModelFactory.getInstance()
+    private val authViewModel: AuthViewModel by viewModels {
+        UserViewModelFactory.getInstance(this)
     }
     private var loadingDialog: SweetAlertDialog? = null
 
@@ -30,6 +29,8 @@ class RegisterActivity : AppCompatActivity() {
 
         binding.btnRegister.setOnClickListener {
             validateInputs()
+            startActivity(Intent(this, LoginActivity::class.java))
+            finishAffinity()
         }
     }
 
@@ -64,7 +65,7 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun register(name: String, email: String, password: String) {
-        registerViewModel.register(name, email, password).observe(this, Observer { result ->
+        authViewModel.register(name, email, password).observe(this, Observer { result ->
             Log.d("RegisterActivity", "Result: $result")
             when (result) {
                 is ResultState.Loading -> {
@@ -100,17 +101,16 @@ class RegisterActivity : AppCompatActivity() {
 
     private fun showLoading(isLoading: Boolean) {
         if (isLoading) {
-            if (loadingDialog == null) {
+            if (loadingDialog == null || !loadingDialog!!.isShowing) {
                 loadingDialog = SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE).apply {
                     titleText = "Loading"
                     setCancelable(false)
                     show()
                 }
-            } else {
-                loadingDialog?.show()
             }
         } else {
             loadingDialog?.dismissWithAnimation()
+            loadingDialog = null
         }
     }
 }

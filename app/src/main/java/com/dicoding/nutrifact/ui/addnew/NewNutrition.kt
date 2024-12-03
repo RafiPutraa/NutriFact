@@ -16,11 +16,11 @@ import androidx.core.content.FileProvider
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.dicoding.nutrifact.R
-import com.dicoding.nutrifact.databinding.ActivityNewnutritionBinding
+import com.dicoding.nutrifact.databinding.ActivityNewNutritionBinding
 import java.io.File
 
 class NewNutrition : AppCompatActivity() {
-    private lateinit var binding: ActivityNewnutritionBinding
+    private lateinit var binding: ActivityNewNutritionBinding
     private var currentImageUri: Uri? = null
 
     private val requestPermissionLauncher =
@@ -43,7 +43,7 @@ class NewNutrition : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        binding = ActivityNewnutritionBinding.inflate(layoutInflater)
+        binding = ActivityNewNutritionBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->

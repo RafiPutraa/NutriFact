@@ -23,5 +23,11 @@ data class Data(
 	val id: String? = null,
 
 	@field:SerializedName("email")
-	val email: String? = null
+	val email: String? = null,
+
+	@field:SerializedName("profileImageURL")
+	val profileImageURL: String? = null,
+
+	@field:SerializedName("points")
+	val points: Int? = null
 )

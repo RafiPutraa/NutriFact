@@ -20,7 +20,7 @@
         android:theme="@style/Theme.NutriFact"
         tools:targetApi="31">
         <activity
-            android:name=".ui.result.notfound.NotFoundActivity"
+            android:name=".ui.result.NotFoundActivity"
             android:exported="false" />
         <activity
             android:name=".ui.editprofile.EditProfileActivity"

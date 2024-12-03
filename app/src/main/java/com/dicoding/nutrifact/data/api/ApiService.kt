@@ -34,9 +34,6 @@ interface ApiService {
         @Path("barcodeId") barcodeId: String
     ): ProductResponse
 
-    @GET("/profile/{userId}")
-    fun getProfile(
-        @Path("userId") userId: String?,
-        @Header("Authorization") token: String?
-    ): Call<ProfileResponse?>?
+    @GET("profile")
+    suspend fun getProfile(): ProfileResponse
 }

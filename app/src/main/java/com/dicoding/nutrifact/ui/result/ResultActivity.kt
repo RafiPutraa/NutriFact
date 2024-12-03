@@ -37,26 +37,31 @@ class ResultActivity : AppCompatActivity() {
         binding.tvFat.text = "Fat : ${fat}g"
         when (healthGrade) {
             "A" -> {
+                binding.tvDesc.text = getString(R.string.grade_a_information)
                 Glide.with(this)
                     .load(R.drawable.grade_a)
                     .into(binding.imgGrade)
             }
             "B" -> {
+                binding.tvDesc.text = getString(R.string.grade_b_information)
                 Glide.with(this)
                     .load(R.drawable.grade_b)
                     .into(binding.imgGrade)
             }
             "C" -> {
+                binding.tvDesc.text = getString(R.string.grade_c_information)
                 Glide.with(this)
                     .load(R.drawable.grade_c)
                     .into(binding.imgGrade)
             }
             "D" -> {
+                binding.tvDesc.text = getString(R.string.grade_d_information)
                 Glide.with(this)
                     .load(R.drawable.grade_d)
                     .into(binding.imgGrade)
             }
             "E" -> {
+                binding.tvDesc.text = getString(R.string.grade_e_information)
                 Glide.with(this)
                     .load(R.drawable.grade_e)
                     .into(binding.imgGrade)
@@ -65,6 +70,7 @@ class ResultActivity : AppCompatActivity() {
 
         binding.btnHome.setOnClickListener {
             startActivity(Intent(this, MainActivity::class.java))
+            finishAffinity()
         }
     }
 }

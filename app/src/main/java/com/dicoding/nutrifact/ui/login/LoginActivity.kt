@@ -2,6 +2,7 @@ package com.dicoding.nutrifact.ui.login
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -9,14 +10,15 @@ import cn.pedant.SweetAlert.SweetAlertDialog
 import com.dicoding.nutrifact.MainActivity
 import com.dicoding.nutrifact.data.ResultState
 import com.dicoding.nutrifact.databinding.ActivityLoginBinding
-import com.dicoding.nutrifact.ui.ViewModelFactory
+import com.dicoding.nutrifact.ui.UserViewModelFactory
 import com.dicoding.nutrifact.ui.register.RegisterActivity
+import com.dicoding.nutrifact.viewmodel.AuthViewModel
 
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
-    private val loginViewModel: LoginViewModel by viewModels {
-        ViewModelFactory.getInstance()
+    private val authViewModel: AuthViewModel by viewModels {
+        UserViewModelFactory.getInstance(this)
     }
     private var loadingDialog: SweetAlertDialog? = null
 
@@ -25,12 +27,24 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        checkLoginStatus()
+
         binding.btnLogin.setOnClickListener {
             validateInputs()
         }
 
         binding.tvSignup.setOnClickListener {
             startActivity(Intent(this, RegisterActivity::class.java))
+        }
+    }
+
+    private fun checkLoginStatus() {
+        authViewModel.getSession().observe(this) { user ->
+            if (user.token != "") {
+                finishAffinity()
+                startActivity(Intent(this, MainActivity::class.java))
+                Log.d("LoginTokenCheck", user.token)
+            }
         }
     }
 
@@ -46,17 +60,15 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun login(email: String, password: String) {
-        loginViewModel.login(email, password).observe(this, Observer { result ->
+        authViewModel.login(email, password).observe(this, Observer { result ->
             when (result) {
                 is ResultState.Loading -> {
                     showLoading(true)
                 }
                 is ResultState.Success -> {
                     showLoading(false)
-                    val loginResponse = result.data
-                    val token = loginResponse.data?.token
                     startActivity(Intent(this, MainActivity::class.java))
-                    finish()
+                    finishAffinity()
                 }
                 is ResultState.Error -> {
                     showLoading(false)
@@ -75,17 +87,16 @@ class LoginActivity : AppCompatActivity() {
 
     private fun showLoading(isLoading: Boolean) {
         if (isLoading) {
-            if (loadingDialog == null) {
+            if (loadingDialog == null || !loadingDialog!!.isShowing) {
                 loadingDialog = SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE).apply {
                     titleText = "Loading"
                     setCancelable(false)
                     show()
                 }
-            } else {
-                loadingDialog?.show()
             }
         } else {
             loadingDialog?.dismissWithAnimation()
+            loadingDialog = null
         }
     }
 

@@ -69,6 +69,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
+            android:textSize="16sp"
             app:layout_constraintEnd_toStartOf="@+id/tvFat"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvVariant"
@@ -79,6 +80,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/tvSugar"
             app:layout_constraintTop_toBottomOf="@+id/tvVariant"
@@ -89,12 +91,13 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="24dp"
+            android:textSize="16sp"
             android:justificationMode="inter_word"
             android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvSugar"
-            tools:text="Lorem ipsum odor amet, consectetuer adipiscing elit. Nibh erat cursus vivamus habitasse curae sit fringilla. Ante cras porttitor a auctor egestas maecenas sit class. Tellus leo ad rhoncus ultrices rutrum eleifend morbi ornare. Litora felis in vulputate consectetur potenti finibus ipsum varius? Nascetur finibus varius facilisi semper blandit suspendisse pharetra. Ligula aptent posuere sapien sem dictumst, iaculis feugiat pellentesque." />
+            tools:text="The best choice! This product is highly nutritious and contributes positively to your health. Enjoy it as part of your daily diet with confidence. It is rich in essential nutrients and supports your overall well-being. Including more Grade A products can improve your dietary quality. Feel good about making a great choice for your health." />
 
         <Button
             android:id="@+id/btnHome"

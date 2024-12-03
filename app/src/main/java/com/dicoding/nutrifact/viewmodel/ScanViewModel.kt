@@ -1,12 +1,11 @@
-package com.dicoding.nutrifact.ui.scan
+package com.dicoding.nutrifact.viewmodel
 
-import android.content.ContentValues.TAG
 import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.dicoding.nutrifact.data.ApiRepository
+import com.dicoding.nutrifact.data.repository.ApiRepository
 import com.dicoding.nutrifact.data.ResultState
 import com.dicoding.nutrifact.data.response.ProductResponse
 import kotlinx.coroutines.launch

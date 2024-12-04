@@ -52,6 +52,8 @@ class ScanFragment : Fragment() {
     }
     private var loadingDialog: SweetAlertDialog? = null
     private lateinit var historyRepository: HistoryRepository
+    private var lastScannedBarcode: String? = null
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -212,10 +214,12 @@ class ScanFragment : Fragment() {
                         barcodeScanner.process(inputImage)
                             .addOnSuccessListener { barcodes ->
                                 for (barcode in barcodes) {
-                                    Log.d(TAG, "Detected barcode: ${barcode.rawValue}")
-                                    barcode.rawValue?.let {
-                                        scanViewModel.getProductByBarcode(it)
+                                    val rawValue = barcode.rawValue
+                                    if (rawValue != null && rawValue != lastScannedBarcode) {
+                                        lastScannedBarcode = rawValue
+                                        Log.d(TAG, "Detected barcode: $rawValue")
 
+                                        scanViewModel.getProductByBarcode(rawValue)
                                         scanViewModel.productResponse.observe(viewLifecycleOwner, Observer { result ->
                                             when (result) {
                                                 is ResultState.Loading -> {
@@ -243,9 +247,8 @@ class ScanFragment : Fragment() {
                                                 is ResultState.Error -> {
                                                     showLoading(false)
                                                     Log.e(TAG, "Error: ${result.error}")
-                                                    val intent = Intent(requireContext(),
-                                                        NotFoundActivity::class.java)
-                                                    intent.putExtra("BARCODE_VALUE", barcode.rawValue)
+                                                    val intent = Intent(requireContext(), NotFoundActivity::class.java)
+                                                    intent.putExtra("BARCODE_VALUE", rawValue)
                                                     startActivity(intent)
                                                 }
                                             }
@@ -328,6 +331,7 @@ class ScanFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+        lastScannedBarcode = null
     }
 
     companion object {

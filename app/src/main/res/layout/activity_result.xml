@@ -57,7 +57,6 @@
             android:id="@+id/tvVariant"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="@+id/tvProduct"
             app:layout_constraintStart_toStartOf="@+id/tvProduct"
@@ -68,7 +67,7 @@
             android:id="@+id/tvSugar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="16dp"
             android:textSize="16sp"
             app:layout_constraintEnd_toStartOf="@+id/tvFat"
             app:layout_constraintStart_toStartOf="parent"
@@ -79,11 +78,10 @@
             android:id="@+id/tvFat"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/tvSugar"
-            app:layout_constraintTop_toBottomOf="@+id/tvVariant"
+            app:layout_constraintTop_toTopOf="@+id/tvSugar"
             tools:text="Fat : 7g" />
 
         <TextView

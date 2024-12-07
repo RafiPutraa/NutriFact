@@ -65,4 +65,7 @@
     <string name="clear_history">Clear History</string>
     <string name="old_password">Old Password</string>
     <string name="new_password">New Password</string>
+    <string name="dummy_point">100</string>
+    <string name="point_desc">Available Point</string>
+    <string name="dummy_welcome">Hello user, welcom to Nutrifact</string>
 </resources>

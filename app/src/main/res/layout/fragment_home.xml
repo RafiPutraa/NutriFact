@@ -50,7 +50,7 @@
                 android:id="@+id/tv_point"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/dummy_point"
+                tools:text="@string/dummy_point"
                 android:textColor="@color/md_theme_onSecondary"
                 android:textSize="32sp"
                 android:textStyle="bold"
@@ -68,25 +68,53 @@
                 android:layout_marginStart="100dp"
                 android:layout_marginTop="15dp"
                 />
-
-
-
         </androidx.cardview.widget.CardView>
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/tvReward"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/reward"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/topContainer"/>
+
+    <TextView
+        android:id="@+id/tvMyRedeem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:text="@string/MyReademtext"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/tvReward"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvReward"
+        android:layout_width="match_parent"
+        android:layout_height="170dp"
+        android:layout_marginTop="8dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvReward"
+        tools:listitem="@layout/reward_item" />
 
     <TextView
         android:id="@+id/tvHistory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="304dp"
+        android:layout_marginTop="24dp"
         android:text="@string/history"
         android:textSize="32sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/rvReward"/>
 
     <TextView
         android:id="@+id/tvViewAll"
@@ -136,4 +164,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:visibility="visible" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -142,11 +142,20 @@ class HomeFragment : Fragment() {
                 is ResultState.Success -> {
                     showProgBar(false)
                     val awardData = result.data
-                    rewardAdapter = RewardAdapter(awardData.data ?: emptyList(), homeViewModel)
-                    binding.rvReward.adapter = rewardAdapter
+
+                    if (awardData.data.isNullOrEmpty()) {
+                        binding.tvNoAward.visibility = View.VISIBLE
+                        binding.rvReward.visibility = View.GONE
+                    } else {
+                        binding.tvNoAward.visibility = View.GONE
+                        binding.rvReward.visibility = View.VISIBLE
+                        rewardAdapter = RewardAdapter(awardData.data, homeViewModel)
+                        binding.rvReward.adapter = rewardAdapter
+                    }
                 }
                 is ResultState.Error -> {
                     showProgBar(false)
+                    binding.tvNoAward.visibility = View.VISIBLE
                     Log.e("HomeFragment", result.error)
                 }
             }

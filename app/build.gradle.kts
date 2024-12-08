@@ -92,4 +92,6 @@ dependencies {
 
 //    Scanner
     implementation(libs.play.services.mlkit.document.scanner)
+
+    implementation("io.ak1:bubbletabbar:1.0.8")
 }

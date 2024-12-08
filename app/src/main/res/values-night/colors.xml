@@ -11,10 +11,10 @@
     <color name="md_theme_onTertiary">#302C4C</color>
     <color name="md_theme_tertiaryContainer">#464364</color>
     <color name="md_theme_onTertiaryContainer">#E4DFFF</color>
-    <color name="md_theme_error">#FFB4AB</color>
-    <color name="md_theme_onError">#690005</color>
-    <color name="md_theme_errorContainer">#93000A</color>
-    <color name="md_theme_onErrorContainer">#FFDAD6</color>
+    <color name="md_theme_error">#BA1A1A</color>
+    <color name="md_theme_onError">#FFFFFF</color>
+    <color name="md_theme_errorContainer">#FFDAD6</color>
+    <color name="md_theme_onErrorContainer">#410002</color>
     <color name="md_theme_background">#0F1417</color>
     <color name="md_theme_onBackground">#DFE3E7</color>
     <color name="md_theme_surface">#0F1417</color>

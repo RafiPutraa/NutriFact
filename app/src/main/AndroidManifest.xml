@@ -35,9 +35,6 @@
             android:name=".ui.history.HistoryActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.scan.tablenutrition.ScanNutrition"
-            android:exported="false" />
-        <activity
             android:name=".ui.result.ResultActivity"
             android:exported="false" />
         <activity

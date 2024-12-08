@@ -53,11 +53,13 @@
     <string name="point_desc">Available Point</string>
     <string name="dummy_welcome">Hello user, welcome to Nutrifact</string>
     <string name="reward">Reward</string>
-    <string name="MyReademtext">My Redeem</string>
+    <string name="myredeem">My Redeem</string>
     <string name="dummy_point_reward">20 Point</string>
     <string name="dummy_date">12/12/2012 23:00</string>
     <string name="redeem">Redeem</string>
     <string name="no_redeem">Looks like you haven’t redeemed any items yet</string>
+    <string name="no_reward">No rewards available at the moment</string>
+    <string name="scan_info">Scan the barcode of the product to learn more about it!</string>
 
     <!--Grade-->
     <string name="grade_a_information">The best choice! This product is highly nutritious and contributes positively to your health. Enjoy it as part of your daily diet with confidence. It is rich in essential nutrients and supports your overall well-being. Regularly choosing products like this can significantly boost your overall nutrition. It is a choice that supports your long-term health and well-being.</string>
@@ -83,5 +85,4 @@
     <string name="answer1">Answer 1</string>
     <string name="answer2">Answer 2</string>
     <string name="answer3">Answer 3</string>
-
 </resources>

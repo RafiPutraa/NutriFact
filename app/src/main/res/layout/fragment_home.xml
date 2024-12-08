@@ -16,28 +16,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <!--        <TextView-->
-        <!--            android:id="@+id/tvGreeting"-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_marginTop="16dp"-->
-        <!--            android:textColor="@color/md_theme_onPrimaryContainer"-->
-        <!--            android:textSize="16sp"-->
-        <!--            android:textStyle="bold"-->
-        <!--            app:layout_constraintEnd_toEndOf="parent"-->
-        <!--            app:layout_constraintStart_toStartOf="parent"-->
-        <!--            app:layout_constraintTop_toTopOf="parent"-->
-        <!--            tools:text="@string/dummy_welcome" />-->
-
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="354dp"
-            android:layout_height="103dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:background="@drawable/all_rounded_sec"
             app:cardCornerRadius="32dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/topContainer"
+            app:layout_constraintEnd_toEndOf="@id/topContainer"
+            app:layout_constraintStart_toStartOf="@id/topContainer"
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
@@ -94,7 +81,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
-        android:text="@string/MyReademtext"
+        android:text="@string/myredeem"
         android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/tvReward"
@@ -111,6 +98,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvReward"
         tools:listitem="@layout/reward_item" />
+
+    <TextView
+        android:id="@+id/tvNoAward"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/no_reward"
+        android:textColor="@color/md_theme_onSurface"
+        android:textSize="16sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/tvHistory"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvReward" />
 
     <TextView
         android:id="@+id/tvHistory"

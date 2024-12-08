@@ -1,6 +1,7 @@
 package com.dicoding.nutrifact.ui.profile
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -18,6 +19,7 @@ import com.dicoding.nutrifact.viewmodel.UserViewModelFactory
 import com.dicoding.nutrifact.viewmodel.ViewModelFactory
 import com.dicoding.nutrifact.ui.editprofile.EditProfileActivity
 import com.dicoding.nutrifact.ui.faq.FAQActivity
+import com.dicoding.nutrifact.ui.history.HistoryActivity
 import com.dicoding.nutrifact.ui.login.LoginActivity
 import com.dicoding.nutrifact.viewmodel.AuthViewModel
 import com.dicoding.nutrifact.viewmodel.ProfileViewModel
@@ -54,6 +56,10 @@ class ProfileFragment : Fragment() {
             }
         }
 
+        binding.btnHistory.setOnClickListener {
+            startActivity(Intent(requireContext(), HistoryActivity::class.java))
+        }
+
         binding.btnFaq.setOnClickListener {
             startActivity(Intent(requireContext(), FAQActivity::class.java))
         }
@@ -80,10 +86,10 @@ class ProfileFragment : Fragment() {
                     binding.tvUsername.text = profile.data?.name
                     binding.tvEmail.text = profile.data?.email
                     val profileImageUrl = profile.data?.profileImageURL
-                    Log.d("Profile",profileImageUrl.toString())
-                    Glide.with(this)
+                    Glide.with(requireContext())
                         .load(profileImageUrl)
                         .into(binding.imgProfile)
+                    Log.d("Profile",profileImageUrl.toString())
                 }
                 is ResultState.Error -> {
                     showLoading(false)

@@ -16,26 +16,30 @@
         android:background="@color/md_theme_primaryContainer"
         android:padding="16dp">
 
-        <RelativeLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/tvQuestion"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                tools:text="Question"
+                android:textColor="@color/md_theme_onPrimaryContainer"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                android:textColor="@color/md_theme_onPrimaryContainer" />
+                app:layout_constraintEnd_toStartOf="@+id/ivArrow"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Question" />
 
             <ImageView
                 android:id="@+id/ivArrow"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:layout_alignParentEnd="true"
-                android:src="@drawable/ic_arrow_down"/>
-        </RelativeLayout>
+                android:src="@drawable/ic_arrow_down"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <View
             android:id="@+id/divider"

@@ -45,7 +45,7 @@ class EditProfileActivity : AppCompatActivity() {
 
     private fun setupAction() {
         binding.imgProfile.setOnClickListener { startGallery() }
-        binding.btnSave.setOnClickListener { updateProfile() }
+        binding.btnSave.setOnClickListener { validateInputs() }
     }
 
     private val launcherGallery = registerForActivityResult(
@@ -63,13 +63,18 @@ class EditProfileActivity : AppCompatActivity() {
         launcherGallery.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
     }
 
+    private fun validateInputs() {
+        val isValidEmail = binding.etUsername.validate()
+        val isValidPassword = binding.etPassword.validate()
+
+        if (isValidEmail && isValidPassword) {
+            updateProfile()
+        }
+    }
+
     private fun updateProfile() {
         val name = binding.etUsername.text.toString().trim()
         val password = binding.etPassword.text.toString().trim()
-        if (name.isEmpty() || password.isEmpty()) {
-            Toast.makeText(this, "Name and password cannot be empty.", Toast.LENGTH_SHORT).show()
-            return
-        }
 
         val uri = profileViewModel.currentImageUri.value
         if (uri == null) {

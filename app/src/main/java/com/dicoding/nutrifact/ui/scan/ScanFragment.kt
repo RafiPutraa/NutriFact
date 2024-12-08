@@ -95,45 +95,72 @@ class ScanFragment : Fragment() {
                     val barcodeScanner = BarcodeScanning.getClient(options)
                     barcodeScanner.process(inputImage)
                         .addOnSuccessListener { barcodes ->
-                            for (barcode in barcodes) {
-                                Log.d(TAG, "Detected barcode: ${barcode.rawValue}")
-                                barcode.rawValue?.let {
-                                    scanViewModel.getProductByBarcode(it)
+                            if (barcodes.isEmpty()) {
+                                SweetAlertDialog(requireContext(), SweetAlertDialog.ERROR_TYPE)
+                                    .setTitleText("Scan Failed")
+                                    .setContentText("Barcode not detected. Please try again.")
+                                    .setConfirmText("OK")
+                                    .setConfirmClickListener {
+                                        it.dismissWithAnimation()
+                                        binding.previewImageView.visibility = View.VISIBLE
+                                        binding.cameraPreview.visibility = View.GONE
+                                    }
+                                    .show()
+                            } else {
+                                for (barcode in barcodes) {
+                                    Log.d(TAG, "Detected barcode: ${barcode.rawValue}")
+                                    barcode.rawValue?.let {
+                                        scanViewModel.getProductByBarcode(it)
 
-                                    scanViewModel.productResponse.observe(viewLifecycleOwner, Observer { result ->
-                                        when (result) {
-                                            is ResultState.Loading -> {
-                                                showLoading(true)
-                                            }
-                                            is ResultState.Success -> {
-                                                showLoading(false)
-                                                val product = result.data.data
-                                                val historyEntity = HistoryEntity(
-                                                    merk = result.data.data?.merk,
-                                                    varian = result.data.data?.varian,
-                                                    sugar = result.data.data?.sugar,
-                                                    fat = result.data.data?.fat,
-                                                    healthGrade = result.data.data?.healthGrade
-                                                )
-                                                lifecycleScope.launch {
-                                                    historyRepository.insertHistory(historyEntity)
+                                        scanViewModel.productResponse.observe(
+                                            viewLifecycleOwner,
+                                            Observer { result ->
+                                                when (result) {
+                                                    is ResultState.Loading -> {
+                                                        showLoading(true)
+                                                    }
+
+                                                    is ResultState.Success -> {
+                                                        showLoading(false)
+                                                        val product = result.data.data
+                                                        val historyEntity = HistoryEntity(
+                                                            merk = result.data.data?.merk,
+                                                            varian = result.data.data?.varian,
+                                                            sugar = result.data.data?.sugar,
+                                                            fat = result.data.data?.fat,
+                                                            healthGrade = result.data.data?.healthGrade
+                                                        )
+                                                        lifecycleScope.launch {
+                                                            historyRepository.insertHistory(
+                                                                historyEntity
+                                                            )
+                                                        }
+                                                        if (product != null) {
+                                                            val intent = Intent(
+                                                                requireContext(),
+                                                                ResultActivity::class.java
+                                                            )
+                                                            intent.putExtra("PRODUCT_DATA", product)
+                                                            startActivity(intent)
+                                                        }
+                                                    }
+
+                                                    is ResultState.Error -> {
+                                                        showLoading(false)
+                                                        Log.e(TAG, "Error: ${result.error}")
+                                                        val intent = Intent(
+                                                            requireContext(),
+                                                            NotFoundActivity::class.java
+                                                        )
+                                                        intent.putExtra(
+                                                            "BARCODE_VALUE",
+                                                            barcode.rawValue
+                                                        )
+                                                        startActivity(intent)
+                                                    }
                                                 }
-                                                if (product != null) {
-                                                    val intent = Intent(requireContext(), ResultActivity::class.java)
-                                                    intent.putExtra("PRODUCT_DATA", product)
-                                                    startActivity(intent)
-                                                }
-                                            }
-                                            is ResultState.Error -> {
-                                                showLoading(false)
-                                                Log.e(TAG, "Error: ${result.error}")
-                                                val intent = Intent(requireContext(),
-                                                    NotFoundActivity::class.java)
-                                                intent.putExtra("BARCODE_VALUE", barcode.rawValue)
-                                                startActivity(intent)
-                                            }
-                                        }
-                                    })
+                                            })
+                                    }
                                 }
                             }
                         }
@@ -332,6 +359,11 @@ class ScanFragment : Fragment() {
         super.onDestroyView()
         _binding = null
         lastScannedBarcode = null
+    }
+
+    override fun onPause() {
+        super.onPause()
+        scanViewModel.setCurrentImageUri(null)
     }
 
     companion object {

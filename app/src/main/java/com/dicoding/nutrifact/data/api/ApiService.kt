@@ -2,8 +2,10 @@ package com.dicoding.nutrifact.data.api
 
 
 import com.dicoding.nutrifact.data.response.LoginResponse
+import com.dicoding.nutrifact.data.response.PointResponse
 import com.dicoding.nutrifact.data.response.ProductResponse
 import com.dicoding.nutrifact.data.response.ProfileResponse
+import com.dicoding.nutrifact.data.response.RedeemResponse
 import com.dicoding.nutrifact.data.response.RegisterResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -49,4 +51,16 @@ interface ApiService {
         @Part("password") password: RequestBody,
         @Part file : MultipartBody.Part
     ): ProfileResponse
+
+    @GET("awards")
+    suspend fun getAward(): PointResponse
+
+    @FormUrlEncoded
+    @POST("awards/redeem")
+    suspend fun redeemAward(
+        @Field("awardId") name: String
+    ): PointResponse
+
+    @GET("redeem-history")
+    suspend fun redeemHistory(): RedeemResponse
 }

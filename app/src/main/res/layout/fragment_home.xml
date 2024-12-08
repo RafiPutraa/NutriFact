@@ -9,67 +9,74 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/topContainer"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="wrap_content"
         android:background="@drawable/bottom_corner_blue"
+        app:cardElevation="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/tvGreeting"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:textColor="@color/md_theme_onPrimaryContainer"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="@string/dummy_welcome" />
+        <!--        <TextView-->
+        <!--            android:id="@+id/tvGreeting"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginTop="16dp"-->
+        <!--            android:textColor="@color/md_theme_onPrimaryContainer"-->
+        <!--            android:textSize="16sp"-->
+        <!--            android:textStyle="bold"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent"-->
+        <!--            app:layout_constraintStart_toStartOf="parent"-->
+        <!--            app:layout_constraintTop_toTopOf="parent"-->
+        <!--            tools:text="@string/dummy_welcome" />-->
 
-        <androidx.cardview.widget.CardView
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="354dp"
             android:layout_height="103dp"
-            android:backgroundTint="@color/md_theme_onPrimaryContainer"
+            android:layout_margin="16dp"
+            android:background="@drawable/all_rounded_sec"
             app:cardCornerRadius="32dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvGreeting" >
+            app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
                 android:id="@+id/image_star"
                 android:layout_width="52dp"
                 android:layout_height="52dp"
-                android:layout_gravity="center|left"
                 android:layout_margin="24dp"
-                android:background="@drawable/ic_star" />
+                android:background="@drawable/ic_star"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/tv_point"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:text="@string/dummy_point"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp"
                 android:textColor="@color/md_theme_onSecondary"
                 android:textSize="32sp"
                 android:textStyle="bold"
-                android:layout_gravity="center|left"
-                android:layout_marginStart="100dp"
-                android:layout_marginBottom="11dp" />
+                app:layout_constraintStart_toEndOf="@+id/image_star"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="@string/dummy_point" />
+
             <TextView
+                android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center|left"
                 android:text="@string/point_desc"
                 android:textColor="@color/md_theme_onSecondary"
-                android:textSize="15sp"
+                android:textSize="14sp"
                 android:textStyle="bold"
-                android:layout_gravity="center|left"
-                android:layout_marginStart="100dp"
-                android:layout_marginTop="15dp"
-                />
-        </androidx.cardview.widget.CardView>
+                app:layout_constraintStart_toStartOf="@+id/tv_point"
+                app:layout_constraintTop_toBottomOf="@+id/tv_point" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
+
     <TextView
         android:id="@+id/tvReward"
         android:layout_width="wrap_content"
@@ -77,10 +84,10 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
         android:text="@string/reward"
-        android:textSize="32sp"
+        android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/topContainer"/>
+        app:layout_constraintTop_toBottomOf="@+id/topContainer" />
 
     <TextView
         android:id="@+id/tvMyRedeem"
@@ -88,7 +95,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
         android:text="@string/MyReademtext"
-        android:textSize="16sp"
+        android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/tvReward"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -96,9 +103,10 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvReward"
         android:layout_width="match_parent"
-        android:layout_height="170dp"
-        android:layout_marginTop="8dp"
+        android:layout_height="245dp"
         android:orientation="vertical"
+        android:padding="8dp"
+        android:scrollbars="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvReward"
@@ -109,12 +117,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:text="@string/history"
-        android:textSize="32sp"
+        android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rvReward"/>
+        app:layout_constraintTop_toBottomOf="@+id/rvReward" />
 
     <TextView
         android:id="@+id/tvViewAll"
@@ -122,7 +130,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
         android:text="@string/view_all"
-        android:textSize="16sp"
+        android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/tvHistory"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -131,7 +139,6 @@
         android:id="@+id/rvCarousel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

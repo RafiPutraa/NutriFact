@@ -29,8 +29,6 @@ class RegisterActivity : AppCompatActivity() {
 
         binding.btnRegister.setOnClickListener {
             validateInputs()
-            startActivity(Intent(this, LoginActivity::class.java))
-            finishAffinity()
         }
     }
 
@@ -80,7 +78,7 @@ class RegisterActivity : AppCompatActivity() {
                         .setConfirmClickListener {
                             it.dismissWithAnimation()
                             startActivity(Intent(this, LoginActivity::class.java))
-                            finish()
+                            finishAffinity()
                         }
                         .show()
                 }

@@ -45,9 +45,20 @@
     <string name="error_password_not_match">Password does not match</string>
     <string name="error_empty_field">This field cannot be empty</string>
     <string name="error_format_email">Please enter a valid email address</string>
-    <string name="information_nutrition_fact">Please take a picture of the nutrition facts</string>
+    <string name="information_nutrition_fact">Please take a picture of the nutrition facts</string><string name="clear_history">Clear History</string>
+    <string name="old_password">Old Password</string>
+    <string name="new_password">New Password</string>
+    <string name="dummy_point">100</string>
+    <string name="point_desc">Available Point</string>
+    <string name="dummy_welcome">Hello user, welcome to Nutrifact</string>
+    <string name="reward">Reward</string>
+    <string name="MyReademtext">My Redeem</string>
+    <string name="dummy_point_reward">20 Point</string>
+    <string name="dummy_date">12/12/2012 23:00</string>
+    <string name="redeem">Redeem</string>
+    <string name="no_redeem">Looks like you haven’t redeemed any items yet</string>
 
-<!--Grade-->
+    <!--Grade-->
     <string name="grade_a_information">The best choice! This product is highly nutritious and contributes positively to your health. Enjoy it as part of your daily diet with confidence. It is rich in essential nutrients and supports your overall well-being. Regularly choosing products like this can significantly boost your overall nutrition. It is a choice that supports your long-term health and well-being.</string>
     <string name="grade_b_information">A good choice. This product offers balanced nutrition and supports a healthy lifestyle. It’s suitable for regular consumption with minimal concern. While not the absolute best, it provides a good mix of nutrients. Incorporating products like this into your meals promotes a balanced and sustainable diet. It is a dependable option for maintaining good health.</string>
     <string name="grade_c_information">An average choice. Be mindful of your portions to maintain a balanced diet. This product can be enjoyed occasionally but isn’t the healthiest option available. It may contain moderate amounts of less desirable ingredients. Products like this are fine in moderation, but balance is important. Pair them with healthier choices to maintain overall dietary quality.</string>
@@ -55,22 +66,12 @@
     <string name="grade_e_information">Be careful! This product has low nutritional value and may not be suitable for frequent consumption. Consider healthier alternatives to support your overall well-being. Regular consumption may negatively impact your health over time. Reducing consumption of products like this can improve your overall health. Choose these sparingly, if at all, for a better lifestyle.</string>
 
 
-<!--Error Message-->
+    <!--Error Message-->
     <string name="error_http_login">An error occurred during login</string>
     <string name="error_http_register">An error occurred during registration</string>
     <string name="error_http_product">Product not found</string>
     <string name="error_timeout">The server is not responding. Please try again later.</string>
     <string name="error_connection">Unable to connect to the server. Check your internet connection.</string>
     <string name="error_unexpected">An unexpected error occurred.</string>
-    <string name="clear_history">Clear History</string>
-    <string name="old_password">Old Password</string>
-    <string name="new_password">New Password</string>
-    <string name="dummy_point">100</string>
-    <string name="point_desc">Available Point</string>
-    <string name="dummy_welcome">Hello user, welcom to Nutrifact</string>
-    <string name="reward">Reward</string>
-    <string name="MyReademtext">My Redeem</string>
-    <string name="dummy_point_reward">20 Point</string>
-    <string name="dummy_date">12/12/2012 23:00</string>
-    <string name="redeem">Redeem</string>
+
 </resources>

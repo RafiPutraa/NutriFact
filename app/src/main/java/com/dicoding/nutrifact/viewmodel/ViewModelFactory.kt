@@ -15,6 +15,10 @@ class ViewModelFactory(private val apiRepository: ApiRepository) : ViewModelProv
                 ScanViewModel(apiRepository) as T
             }modelClass.isAssignableFrom(ProfileViewModel::class.java) -> {
                 ProfileViewModel(apiRepository) as T
+            }modelClass.isAssignableFrom(HomeViewModel::class.java) -> {
+                HomeViewModel(apiRepository) as T
+            }modelClass.isAssignableFrom(MyRedeemViewModel::class.java) -> {
+                MyRedeemViewModel(apiRepository) as T
             }
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }

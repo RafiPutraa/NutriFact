@@ -10,7 +10,9 @@
     android:layout_marginTop="4dp"
     android:layout_marginEnd="16dp"
     android:layout_marginBottom="4dp"
-    app:cardCornerRadius="16dp">
+    android:paddingBottom="8dp"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="4dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -18,7 +20,7 @@
         android:background="@color/md_theme_primaryContainer">
 
         <ImageView
-            android:id="@+id/imgGrade_logo"
+            android:id="@+id/imgProduct"
             android:layout_width="105dp"
             android:layout_height="105dp"
             android:layout_marginStart="8dp"
@@ -28,41 +30,53 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:src="@tools:sample/backgrounds/scenic" />
 
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btnRedeem"
+            app:layout_constraintStart_toEndOf="@+id/imgProduct"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/tvProductReward"
+            <TextView
+                android:id="@+id/tvProductReward"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:textColor="@color/md_theme_onPrimaryContainer"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/imgProduct"
+                app:layout_constraintEnd_toStartOf="@+id/button"
+                app:layout_constraintStart_toEndOf="@+id/imgProduct"
+                app:layout_constraintTop_toTopOf="@+id/imgProduct"
+                tools:text="@string/product_name" />
+
+            <TextView
+                android:id="@+id/tvRewardPoint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:textColor="@color/md_theme_onPrimaryContainer"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toStartOf="@+id/button"
+                app:layout_constraintStart_toStartOf="@+id/tvProductReward"
+                app:layout_constraintTop_toBottomOf="@+id/tvProductReward"
+                tools:text="@string/dummy_point_reward" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnRedeem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginTop="16dp"
-            android:textColor="@color/md_theme_onPrimaryContainer"
-            android:textSize="16sp"
-            android:textStyle="bold"
-
-            app:layout_constraintStart_toEndOf="@+id/imgGrade_logo"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="@string/product_name" />
-
-        <TextView
-            android:id="@+id/tvRewardPoint"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:textColor="@color/md_theme_onPrimaryContainer"
-            android:textSize="16sp"
-            app:layout_constraintStart_toEndOf="@+id/imgGrade_logo"
-            app:layout_constraintTop_toBottomOf="@+id/tvProductReward"
-            tools:text="@string/dummy_point_reward" />
-
-
-            <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
+            android:background="@drawable/stroke_transparent"
             android:text="@string/redeem"
+            android:textColor="@color/md_theme_onSecondaryContainer"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

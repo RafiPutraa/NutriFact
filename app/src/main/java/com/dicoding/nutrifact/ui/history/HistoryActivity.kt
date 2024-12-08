@@ -29,6 +29,10 @@ class HistoryActivity : AppCompatActivity() {
         binding.rvHistory.layoutManager = LinearLayoutManager(this)
         binding.rvHistory.adapter = historyAdapter
 
+        binding.btnBack.setOnClickListener {
+            finish()
+        }
+
         historyRepository.getAllHistory().observe(this, Observer { historyList ->
             if (historyList.isEmpty()) {
                 binding.tvError.visibility = View.VISIBLE

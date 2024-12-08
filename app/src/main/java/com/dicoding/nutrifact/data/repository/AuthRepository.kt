@@ -13,7 +13,7 @@ import retrofit2.HttpException
 import java.io.IOException
 import java.net.SocketTimeoutException
 
-class AuthRepository constructor(
+class AuthRepository private constructor(
     private val apiService: ApiService,
     private val userPreference: UserPreference
 ) {

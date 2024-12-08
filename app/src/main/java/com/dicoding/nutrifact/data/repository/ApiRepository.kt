@@ -5,6 +5,7 @@ import com.dicoding.nutrifact.data.ResultState
 import com.dicoding.nutrifact.data.api.ApiService
 import com.dicoding.nutrifact.data.response.LoginResponse
 import com.dicoding.nutrifact.data.response.ProductResponse
+import com.dicoding.nutrifact.data.response.RedeemResponse
 import com.dicoding.nutrifact.data.response.RegisterResponse
 import com.google.gson.Gson
 import okhttp3.MultipartBody
@@ -67,6 +68,59 @@ class ApiRepository private constructor(
             emit(ResultState.Error(e.message ?: "An unexpected error occurred."))
         }
     }
+
+    fun getAward() = liveData {
+        emit(ResultState.Loading)
+        try {
+            val awardResponse = apiService.getAward()
+            emit(ResultState.Success(awardResponse))
+        } catch (e: HttpException) {
+            val errorBody = e.response()?.errorBody()?.string()
+            emit(ResultState.Error(errorBody ?: "Failed to fetch awards data."))
+        } catch (e: SocketTimeoutException) {
+            emit(ResultState.Error("The server is not responding. Please try again later."))
+        } catch (e: IOException) {
+            emit(ResultState.Error("Unable to connect to the server. Check your internet connection."))
+        } catch (e: Exception) {
+            emit(ResultState.Error(e.message ?: "An unexpected error occurred."))
+        }
+    }
+
+    fun redeemAward(awardId: String) = liveData {
+        emit(ResultState.Loading)
+        try {
+            val redeemResponse = apiService.redeemAward(awardId)
+            emit(ResultState.Success(redeemResponse))
+        } catch (e: HttpException) {
+            val errorBody = e.response()?.errorBody()?.string()
+            val errorResponse = Gson().fromJson(errorBody, RedeemResponse::class.java)
+            emit(ResultState.Error(errorResponse.message ?: "Failed to redeem the award."))
+        } catch (e: SocketTimeoutException) {
+            emit(ResultState.Error("The server is not responding. Please try again later."))
+        } catch (e: IOException) {
+            emit(ResultState.Error("Unable to connect to the server. Check your internet connection."))
+        } catch (e: Exception) {
+            emit(ResultState.Error(e.message ?: "An unexpected error occurred."))
+        }
+    }
+
+    fun getRedeemHistory() = liveData {
+        emit(ResultState.Loading)
+        try {
+            val historyResponse = apiService.redeemHistory()
+            emit(ResultState.Success(historyResponse))
+        } catch (e: HttpException) {
+            val errorBody = e.response()?.errorBody()?.string()
+            emit(ResultState.Error(errorBody ?: "Failed to fetch redeem history."))
+        } catch (e: SocketTimeoutException) {
+            emit(ResultState.Error("The server is not responding. Please try again later."))
+        } catch (e: IOException) {
+            emit(ResultState.Error("Unable to connect to the server. Check your internet connection."))
+        } catch (e: Exception) {
+            emit(ResultState.Error(e.message ?: "An unexpected error occurred."))
+        }
+    }
+
 
 
     companion object {

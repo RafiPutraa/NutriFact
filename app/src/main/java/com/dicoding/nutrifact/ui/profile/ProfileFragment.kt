@@ -17,6 +17,7 @@ import com.dicoding.nutrifact.databinding.FragmentProfileBinding
 import com.dicoding.nutrifact.viewmodel.UserViewModelFactory
 import com.dicoding.nutrifact.viewmodel.ViewModelFactory
 import com.dicoding.nutrifact.ui.editprofile.EditProfileActivity
+import com.dicoding.nutrifact.ui.faq.FAQActivity
 import com.dicoding.nutrifact.ui.login.LoginActivity
 import com.dicoding.nutrifact.viewmodel.AuthViewModel
 import com.dicoding.nutrifact.viewmodel.ProfileViewModel
@@ -54,6 +55,7 @@ class ProfileFragment : Fragment() {
         }
 
         binding.btnFaq.setOnClickListener {
+            startActivity(Intent(requireContext(), FAQActivity::class.java))
         }
 
         binding.btnEdtProfile.setOnClickListener{

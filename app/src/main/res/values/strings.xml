@@ -45,7 +45,8 @@
     <string name="error_password_not_match">Password does not match</string>
     <string name="error_empty_field">This field cannot be empty</string>
     <string name="error_format_email">Please enter a valid email address</string>
-    <string name="information_nutrition_fact">Please take a picture of the nutrition facts</string><string name="clear_history">Clear History</string>
+    <string name="information_nutrition_fact">Please take a picture of the nutrition facts</string>
+    <string name="clear_history">Clear History</string>
     <string name="old_password">Old Password</string>
     <string name="new_password">New Password</string>
     <string name="dummy_point">100</string>
@@ -73,5 +74,14 @@
     <string name="error_timeout">The server is not responding. Please try again later.</string>
     <string name="error_connection">Unable to connect to the server. Check your internet connection.</string>
     <string name="error_unexpected">An unexpected error occurred.</string>
+    <string name="faq">FAQ</string>
+
+    <!--FAQ-->
+    <string name="question1">Question 1</string>
+    <string name="question2">Question 2</string>
+    <string name="question3">Question 3</string>
+    <string name="answer1">Answer 1</string>
+    <string name="answer2">Answer 2</string>
+    <string name="answer3">Answer 3</string>
 
 </resources>

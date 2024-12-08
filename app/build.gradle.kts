@@ -89,4 +89,7 @@ dependencies {
 
 //    Data Store
     implementation("androidx.datastore:datastore-preferences:1.0.0")
+
+//    Scanner
+    implementation(libs.play.services.mlkit.document.scanner)
 }

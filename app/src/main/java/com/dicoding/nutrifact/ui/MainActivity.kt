@@ -29,4 +29,19 @@ class MainActivity : AppCompatActivity() {
 //        setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
     }
+
+    override fun onBackPressed() {
+        val navController = findNavController(R.id.nav_host_fragment_activity_main)
+
+        if (navController.currentDestination?.id in listOf(
+                R.id.navigation_home,
+                R.id.navigation_scan,
+                R.id.navigation_profile
+            )
+        ) {
+            finishAffinity()
+        } else {
+            super.onBackPressed()
+        }
+    }
 }

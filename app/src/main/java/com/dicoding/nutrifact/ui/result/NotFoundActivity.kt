@@ -5,7 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.dicoding.nutrifact.ui.MainActivity
 import com.dicoding.nutrifact.databinding.ActivityNotFoundBinding
-import com.dicoding.nutrifact.ui.addnew.NewNutrition
+import com.dicoding.nutrifact.ui.newnutrition.NewNutrition
 
 class NotFoundActivity : AppCompatActivity() {
     private lateinit var binding: ActivityNotFoundBinding

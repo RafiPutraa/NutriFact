@@ -13,8 +13,10 @@ lifecycleViewmodelKtx = "2.8.7"
 navigationFragmentKtx = "2.8.3"
 navigationUiKtx = "2.8.3"
 activity = "1.9.3"
+playServicesMlkitDocumentScanner = "16.0.0-beta1"
 
 [libraries]
+play-services-mlkit-document-scanner = { module = "com.google.android.gms:play-services-mlkit-document-scanner", version.ref = "playServicesMlkitDocumentScanner" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }

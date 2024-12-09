@@ -12,8 +12,8 @@ data class ProductResponse(
 	val message: String? = null,
 
 	@field:SerializedName("status")
-	val status: Int? = null
-)
+	val status: String? = null
+): Serializable
 
 data class ProductData(
 

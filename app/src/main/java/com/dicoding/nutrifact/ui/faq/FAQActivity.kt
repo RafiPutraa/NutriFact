@@ -22,6 +22,7 @@ class FAQActivity : AppCompatActivity() {
             FAQItem(getString(R.string.question2), getString(R.string.answer2)),
             FAQItem(getString(R.string.question3), getString(R.string.answer3)),
             FAQItem(getString(R.string.question4), getString(R.string.answer4)),
+            FAQItem(getString(R.string.question5), getString(R.string.answer5)),
         )
 
         val faqAdapter = FAQAdapter(faqList)

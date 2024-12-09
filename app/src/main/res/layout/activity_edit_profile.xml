@@ -7,17 +7,28 @@
     android:layout_height="match_parent"
     tools:context=".ui.editprofile.EditProfileActivity">
 
+    <Button
+        android:id="@+id/btnBack"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="24dp"
+        android:padding="8dp"
+        app:icon="@drawable/ic_back"
+        app:iconSize="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
         android:text="@string/edit_profile_head"
         android:textSize="32sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/btnBack"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/btnBack" />
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/imgProfile"

@@ -46,6 +46,7 @@ class EditProfileActivity : AppCompatActivity() {
     private fun setupAction() {
         binding.imgProfile.setOnClickListener { startGallery() }
         binding.btnSave.setOnClickListener { validateInputs() }
+        binding.btnBack.setOnClickListener { finish() }
     }
 
     private val launcherGallery = registerForActivityResult(

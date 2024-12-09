@@ -9,6 +9,8 @@ import com.dicoding.nutrifact.data.repository.ApiRepository
 import com.dicoding.nutrifact.data.ResultState
 import com.dicoding.nutrifact.data.response.ProductResponse
 import kotlinx.coroutines.launch
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 
 class ScanViewModel (private val apiRepository: ApiRepository) : ViewModel() {
     private val _currentImageUri = MutableLiveData<Uri?>()
@@ -28,4 +30,11 @@ class ScanViewModel (private val apiRepository: ApiRepository) : ViewModel() {
             }
         }
     }
+
+    fun postNewProduct(
+        barcodeId: RequestBody,
+        merk: RequestBody,
+        varian: RequestBody,
+        file: MultipartBody.Part
+    ) = apiRepository.postNewProduct(barcodeId, merk, varian, file)
 }

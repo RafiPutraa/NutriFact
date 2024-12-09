@@ -15,7 +15,6 @@
     <string name="btn_edtProfile">Edit Profile</string>
     <string name="btn_history">History</string>
     <string name="btn_faq">FAQ</string>
-    <string name="btn_aboutDev">About Developer</string>
     <string name="btn_logOut">Log Out</string>
     <string name="result">Result</string>
     <string name="home">Home</string>
@@ -60,6 +59,9 @@
     <string name="no_redeem">Looks like you haven’t redeemed any items yet</string>
     <string name="no_reward">No rewards available at the moment</string>
     <string name="scan_info">Scan the barcode of the product to learn more about it!</string>
+    <string name="About">About</string>
+    <string name="AboutHead">NutriFact</string>
+    <string name="body_about">Nutrifact is an app that grades packaged foods and beverages based on sugar and saturated fat content, categorized using an “A,” “B,” “C,” and “D,” grading system. The aim of the app is to increase consumer awareness of what they are consuming and encourage manufacturers to reformulate products with lower sugar and fat options.\n</string>
 
     <!--Grade-->
     <string name="grade_a_information">The best choice! This product is highly nutritious and contributes positively to your health. Enjoy it as part of your daily diet with confidence. It is rich in essential nutrients and supports your overall well-being. Regularly choosing products like this can significantly boost your overall nutrition. It is a choice that supports your long-term health and well-being.</string>
@@ -79,33 +81,24 @@
     <string name="faq">FAQ</string>
 
     <!--FAQ-->
-    <string name="question1">How can I update my profile?</string>
-    <string name="question2">How can I add a grading (rating) that’s not available?</string>
+    <string name="question1">How can I check the grade of a product?</string>
+    <string name="question2">How can I get a point?</string>
     <string name="question3">How can I view my redeem history?</string>
-    <string name="question4">How can I find items that I’ve scanned before?</string>
+    <string name="question4">How can I find all items that I’ve scanned before?</string>
+    <string name="question5">How can I update my profile?</string>
     <string name="answer1">
-        1. Go to the Profile page through the Profile navigation button.&#10;
-        2. Click the Edit Profile button.&#10;
-        3. Enter the information you wish to update, such as your name, email, or other details.&#10;
-        4. Once done, click the Save button to save the changes.
+        1. Go to the Scan page by clicking the Scan navigation button located in the center of the navbar.\n2. Scan the barcode of the product you want to check.\n3. The grade will then appear.
     </string>
     <string name="answer2">
-        1. Go to the Scan page via the Scan navigation button located in the center of the navbar.&#10;
-        2. Scan the barcode of the item you want to add.&#10;
-        3. If a Not Found page appears, click the Add New button.&#10;
-        4. Scan the nutrition label that you want to add.&#10;
-        5. The new Grading result will now appear.
+        1. Go to the Scan page by clicking the Scan navigation button located in the center of the navbar.\n2. Scan the barcode of the product.\n3. If a Not Found page appears, click the Add New button.\n4. Scan the nutrition label that you want to add.\n5. If the addition is successful, you will receive 5 points.
     </string>
     <string name="answer3">
-        1. Go to the Home page.&#10;
-        2. On the right side of the Awards text, click on the My Redeem link to view your redeem history.
+        1. Go to the Home page.\n2. On the right side of the Reward text, click on the My Redeem to view your redeem history.
     </string>
     <string name="answer4">
-        1. Go to the Home page.&#10;
-        2. Click on the All History link.&#10;
-        Note : To view the results of a specific item, click on the item you want to check.
+        1. Go to the Home page.\n2. On the right side of the History text, click on the View All to view all of your scan history.
     </string>
-    <string name="About">About</string>
-    <string name="AboutHead">NutriFact</string>
-    <string name="body_about">Nutrifact is an app that grades packaged foods and beverages based on sugar and saturated fat content, categorized using an “A,” “B,” “C,” and “D,” grading system. The aim of the app is to increase consumer awareness of what they are consuming and encourage manufacturers to reformulate products with lower sugar and fat options.\n</string>
+    <string name="answer5">
+        1. Go to the Profile page through the Profile navigation button.\n2. Click the Edit Profile button.\n3. Enter the information you wish to update, such as your photo profile, username, or password.\n4. Once done, click the Save button to save the changes.
+    </string>
 </resources>

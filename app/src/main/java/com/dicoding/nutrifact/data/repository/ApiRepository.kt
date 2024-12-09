@@ -35,6 +35,30 @@ class ApiRepository private constructor(
         }
     }
 
+    fun postNewProduct(
+        barcodeId: RequestBody,
+        merk: RequestBody,
+        varian: RequestBody,
+        file: MultipartBody.Part
+    ) = liveData {
+        emit(ResultState.Loading)
+        try {
+            val productResponse = apiService.postNewProduct(barcodeId, merk, varian, file)
+            emit(ResultState.Success(productResponse))
+        } catch (e: HttpException) {
+            val errorBody = e.response()?.errorBody()?.string()
+            val errorResponse = Gson().fromJson(errorBody, ProductResponse::class.java)
+            emit(ResultState.Error(errorResponse.message ?: "The nutrition facts photo is hard to read. Please upload a clearer one."))
+        } catch (e: SocketTimeoutException) {
+            emit(ResultState.Error("The server is not responding. Please try again later."))
+        } catch (e: IOException) {
+            emit(ResultState.Error("Unable to connect to the server. Check your internet connection."))
+        } catch (e: Exception) {
+            emit(ResultState.Error(e.message ?: "An unexpected error occurred."))
+        }
+    }
+
+
     fun getProfile() = liveData {
         emit(ResultState.Loading)
         try {

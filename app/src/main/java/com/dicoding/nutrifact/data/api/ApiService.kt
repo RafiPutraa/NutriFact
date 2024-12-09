@@ -41,6 +41,15 @@ interface ApiService {
         @Path("barcodeId") barcodeId: String
     ): ProductResponse
 
+    @Multipart
+    @POST("products")
+    suspend fun postNewProduct(
+        @Part("barcodeId") barcodeId: RequestBody,
+        @Part("merk") merk: RequestBody,
+        @Part("varian") varian: RequestBody,
+        @Part file : MultipartBody.Part
+    ): ProductResponse
+
     @GET("profile")
     suspend fun getProfile(): ProfileResponse
 

@@ -15,6 +15,7 @@ import com.dicoding.nutrifact.data.ResultState
 import com.dicoding.nutrifact.data.local.HistoryRepository
 import com.dicoding.nutrifact.data.local.room.HistoryDatabase
 import com.dicoding.nutrifact.databinding.FragmentProfileBinding
+import com.dicoding.nutrifact.ui.about.AboutActivity
 import com.dicoding.nutrifact.viewmodel.UserViewModelFactory
 import com.dicoding.nutrifact.viewmodel.ViewModelFactory
 import com.dicoding.nutrifact.ui.editprofile.EditProfileActivity
@@ -66,6 +67,10 @@ class ProfileFragment : Fragment() {
 
         binding.btnEdtProfile.setOnClickListener{
             startActivity(Intent(requireContext(), EditProfileActivity::class.java))
+        }
+
+        binding.btnAbout.setOnClickListener {
+            startActivity(Intent(requireContext(), AboutActivity::class.java))
         }
 
         observeProfile()

@@ -20,7 +20,8 @@ class FAQActivity : AppCompatActivity() {
         val faqList = listOf(
             FAQItem(getString(R.string.question1), getString(R.string.answer1)),
             FAQItem(getString(R.string.question2), getString(R.string.answer2)),
-            FAQItem(getString(R.string.question3), getString(R.string.answer3))
+            FAQItem(getString(R.string.question3), getString(R.string.answer3)),
+            FAQItem(getString(R.string.question4), getString(R.string.answer4)),
         )
 
         val faqAdapter = FAQAdapter(faqList)

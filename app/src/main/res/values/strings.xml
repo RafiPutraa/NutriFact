@@ -79,10 +79,33 @@
     <string name="faq">FAQ</string>
 
     <!--FAQ-->
-    <string name="question1">Question 1</string>
-    <string name="question2">Question 2</string>
-    <string name="question3">Question 3</string>
-    <string name="answer1">Answer 1</string>
-    <string name="answer2">Answer 2</string>
-    <string name="answer3">Answer 3</string>
+    <string name="question1">How can I update my profile?</string>
+    <string name="question2">How can I add a grading (rating) that’s not available?</string>
+    <string name="question3">How can I view my redeem history?</string>
+    <string name="question4">How can I find items that I’ve scanned before?</string>
+    <string name="answer1">
+        1. Go to the Profile page through the Profile navigation button.&#10;
+        2. Click the Edit Profile button.&#10;
+        3. Enter the information you wish to update, such as your name, email, or other details.&#10;
+        4. Once done, click the Save button to save the changes.
+    </string>
+    <string name="answer2">
+        1. Go to the Scan page via the Scan navigation button located in the center of the navbar.&#10;
+        2. Scan the barcode of the item you want to add.&#10;
+        3. If a Not Found page appears, click the Add New button.&#10;
+        4. Scan the nutrition label that you want to add.&#10;
+        5. The new Grading result will now appear.
+    </string>
+    <string name="answer3">
+        1. Go to the Home page.&#10;
+        2. On the right side of the Awards text, click on the My Redeem link to view your redeem history.
+    </string>
+    <string name="answer4">
+        1. Go to the Home page.&#10;
+        2. Click on the All History link.&#10;
+        Note : To view the results of a specific item, click on the item you want to check.
+    </string>
+    <string name="About">About</string>
+    <string name="AboutHead">NutriFact</string>
+    <string name="body_about">Nutrifact is an app that grades packaged foods and beverages based on sugar and saturated fat content, categorized using an “A,” “B,” “C,” and “D,” grading system. The aim of the app is to increase consumer awareness of what they are consuming and encourage manufacturers to reformulate products with lower sugar and fat options.\n</string>
 </resources>

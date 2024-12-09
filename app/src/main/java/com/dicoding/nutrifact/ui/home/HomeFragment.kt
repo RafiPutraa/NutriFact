@@ -36,6 +36,8 @@ class HomeFragment : Fragment() {
     private val homeViewModel: HomeViewModel by viewModels {
         ViewModelFactory.getInstance(requireContext())
     }
+    private var isErrorShown = false
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -101,14 +103,18 @@ class HomeFragment : Fragment() {
                 }
                 is ResultState.Error -> {
                     showLoading(false)
-                    SweetAlertDialog(requireContext(), SweetAlertDialog.ERROR_TYPE)
-                        .setTitleText("Redeem failed")
-                        .setContentText(result.error)
-                        .setConfirmText("OK")
-                        .setConfirmClickListener {
-                            it.dismissWithAnimation()
-                        }
-                        .show()
+                    if (!isErrorShown) {
+                        SweetAlertDialog(requireContext(), SweetAlertDialog.ERROR_TYPE)
+                            .setTitleText("Redeem failed")
+                            .setContentText(result.error)
+                            .setConfirmText("OK")
+                            .setConfirmClickListener {
+                                it.dismissWithAnimation()
+                            }
+                            .show()
+
+                        isErrorShown = true
+                    }
                 }
             }
         }
@@ -197,6 +203,7 @@ class HomeFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
+        isErrorShown = false
         fetchData()
         homeViewModel.getProfile()
     }

@@ -29,25 +29,12 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-
-        checkLoginStatus()
-
         binding.btnLogin.setOnClickListener {
             validateInputs()
         }
 
         binding.tvSignup.setOnClickListener {
             startActivity(Intent(this, RegisterActivity::class.java))
-        }
-    }
-
-    private fun checkLoginStatus() {
-        authViewModel.getSession().observe(this) { user ->
-            if (user.token != "") {
-                finishAffinity()
-                startActivity(Intent(this, MainActivity::class.java))
-                Log.d("LoginTokenCheck", user.token)
-            }
         }
     }
 

@@ -55,7 +55,7 @@ class NewNutrition : AppCompatActivity() {
         historyRepository = HistoryRepository.getInstance(historyDatabase)
 
         val options = GmsDocumentScannerOptions.Builder()
-            .setScannerMode(GmsDocumentScannerOptions.SCANNER_MODE_BASE)
+            .setScannerMode(GmsDocumentScannerOptions.SCANNER_MODE_BASE_WITH_FILTER)
             .setPageLimit(1)
             .setGalleryImportAllowed(true)
             .setResultFormats(GmsDocumentScannerOptions.RESULT_FORMAT_JPEG)
@@ -77,8 +77,6 @@ class NewNutrition : AppCompatActivity() {
                         viewModel.setCurrentImageUri(imageUri)
                     }
                 }
-            } else {
-                Toast.makeText(this, "Scan failed or cancelled", Toast.LENGTH_SHORT).show()
             }
         }
 

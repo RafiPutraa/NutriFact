@@ -94,4 +94,6 @@ dependencies {
     implementation(libs.play.services.mlkit.document.scanner)
 
     implementation("io.ak1:bubbletabbar:1.0.8")
+    implementation("com.airbnb.android:lottie:6.0.0")
+
 }

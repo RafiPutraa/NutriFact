@@ -4,6 +4,8 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 import java.util.TimeZone
+import android.util.Base64
+import org.json.JSONObject
 
 fun String.withDateFormat(): String {
     return try {
@@ -20,3 +22,20 @@ fun String.withDateFormat(): String {
         ""
     }
 }
+
+
+fun isTokenExpired(token: String): Boolean {
+    return try {
+        val parts = token.split(".")
+        if (parts.size < 3) return true
+
+        val payload = String(Base64.decode(parts[1], Base64.DEFAULT))
+        val json = JSONObject(payload)
+        val exp = json.getLong("exp")
+        val currentTime = System.currentTimeMillis() / 1000
+        currentTime > exp
+    } catch (e: Exception) {
+        true
+    }
+}
+

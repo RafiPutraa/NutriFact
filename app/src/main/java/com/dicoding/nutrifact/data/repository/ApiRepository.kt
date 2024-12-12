@@ -48,7 +48,7 @@ class ApiRepository private constructor(
         } catch (e: HttpException) {
             val errorBody = e.response()?.errorBody()?.string()
             val errorResponse = Gson().fromJson(errorBody, ProductResponse::class.java)
-            emit(ResultState.Error(errorResponse.message ?: "The nutrition facts photo is hard to read. Please upload a clearer one."))
+            emit(ResultState.Error("The photo quality is poor. Please upload a better one"))
         } catch (e: SocketTimeoutException) {
             emit(ResultState.Error("The server is not responding. Please try again later."))
         } catch (e: IOException) {

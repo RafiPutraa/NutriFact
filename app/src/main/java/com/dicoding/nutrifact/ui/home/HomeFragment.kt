@@ -37,6 +37,7 @@ class HomeFragment : Fragment() {
         ViewModelFactory.getInstance(requireContext())
     }
     private var isErrorShown = false
+    private var isSuccessShown = false
 
 
     override fun onCreateView(
@@ -48,17 +49,22 @@ class HomeFragment : Fragment() {
         val root: View = binding.root
 
         val spannable_redeem = SpannableString(binding.tvMyRedeem.text)
-        spannable_redeem.setSpan(UnderlineSpan(), 0, spannable_redeem.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+        spannable_redeem.setSpan(
+            UnderlineSpan(),
+            0,
+            spannable_redeem.length,
+            Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
         binding.tvMyRedeem.text = spannable_redeem
         binding.tvMyRedeem.setOnClickListener {
-            startActivity(Intent(requireContext(),MyRedeemActivity::class.java))
+            startActivity(Intent(requireContext(), MyRedeemActivity::class.java))
         }
 
         val spannable = SpannableString(binding.tvViewAll.text)
         spannable.setSpan(UnderlineSpan(), 0, spannable.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
         binding.tvViewAll.text = spannable
         binding.tvViewAll.setOnClickListener {
-            startActivity(Intent(requireContext(),HistoryActivity::class.java))
+            startActivity(Intent(requireContext(), HistoryActivity::class.java))
         }
 
         val historyDao = HistoryDatabase.getInstance(requireContext()).historyDao()
@@ -67,10 +73,12 @@ class HomeFragment : Fragment() {
         rewardAdapter = RewardAdapter(emptyList(), homeViewModel)
 
 
-        binding.rvCarousel.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        binding.rvCarousel.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         binding.rvCarousel.adapter = carouselAdapter
 
-        binding.rvReward.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+        binding.rvReward.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         binding.rvReward.adapter = rewardAdapter
 
         fetchData()
@@ -89,18 +97,23 @@ class HomeFragment : Fragment() {
                 is ResultState.Loading -> {
                     showLoading(true)
                 }
+
                 is ResultState.Success -> {
                     showLoading(false)
-                    SweetAlertDialog(requireContext(), SweetAlertDialog.SUCCESS_TYPE)
-                        .setTitleText("Redeem Successful")
-                        .setContentText("Congratulations! You've successfully redeemed your points.")
-                        .setConfirmText("OK")
-                        .setConfirmClickListener {
-                            it.dismissWithAnimation()
-                            homeViewModel.getProfile()
-                        }
-                        .show()
+                    if (isSuccessShown) {
+                        SweetAlertDialog(requireContext(), SweetAlertDialog.SUCCESS_TYPE)
+                            .setTitleText("Redeem Successful")
+                            .setContentText("Congratulations! You've successfully redeemed your points.")
+                            .setConfirmText("OK")
+                            .setConfirmClickListener {
+                                it.dismissWithAnimation()
+                                homeViewModel.getProfile()
+                            }
+                            .show()
+                        isSuccessShown = true
+                    }
                 }
+
                 is ResultState.Error -> {
                     showLoading(false)
                     if (!isErrorShown) {
@@ -126,11 +139,13 @@ class HomeFragment : Fragment() {
                 is ResultState.Loading -> {
                     showProgBar(true)
                 }
+
                 is ResultState.Success -> {
                     showProgBar(false)
                     val profile = result.data
                     binding.tvPoint.text = profile.data?.points.toString()
                 }
+
                 is ResultState.Error -> {
                     showProgBar(false)
                     Log.e("HomeFragment", result.error)
@@ -145,6 +160,7 @@ class HomeFragment : Fragment() {
                 is ResultState.Loading -> {
                     showProgBar(true)
                 }
+
                 is ResultState.Success -> {
                     showProgBar(false)
                     val awardData = result.data
@@ -159,6 +175,7 @@ class HomeFragment : Fragment() {
                         binding.rvReward.adapter = rewardAdapter
                     }
                 }
+
                 is ResultState.Error -> {
                     showProgBar(false)
                     binding.tvNoAward.visibility = View.VISIBLE
@@ -168,7 +185,7 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun fetchData(){
+    private fun fetchData() {
         historyRepository.getLastTenHistory().observe(viewLifecycleOwner, Observer { historyList ->
             if (historyList.isEmpty()) {
                 binding.tvError.visibility = View.VISIBLE
@@ -185,11 +202,12 @@ class HomeFragment : Fragment() {
     private fun showLoading(isLoading: Boolean) {
         if (isLoading) {
             if (loadingDialog == null || !loadingDialog!!.isShowing) {
-                loadingDialog = SweetAlertDialog(requireContext(), SweetAlertDialog.PROGRESS_TYPE).apply {
-                    titleText = "Loading"
-                    setCancelable(false)
-                    show()
-                }
+                loadingDialog =
+                    SweetAlertDialog(requireContext(), SweetAlertDialog.PROGRESS_TYPE).apply {
+                        titleText = "Loading"
+                        setCancelable(false)
+                        show()
+                    }
             }
         } else {
             loadingDialog?.dismissWithAnimation()
@@ -204,6 +222,7 @@ class HomeFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         isErrorShown = false
+        isSuccessShown = false
         fetchData()
         homeViewModel.getProfile()
     }
